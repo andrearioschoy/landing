@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hora Azul Fotografía | Retratos de familia y pareja en México</title>
+  <meta name="description" content="Pausas guiadas para volver a conectar con quienes más amas. Fotografía de familia y pareja — la cámara es la excusa, lo importante es la conexión.">
+  <meta property="og:title" content="Hora Azul Fotografía">
+  <meta property="og:description" content="Pausas guiadas para volver a conectar con quienes más amas.">
+  <meta property="og:image" content="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/logo_fpqtx8.png">
+  <link rel="icon" href="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602207/mini-logo_aax5c9.png">
+
+  <!-- META PIXEL: pega aquí tu código de Meta Pixel -->
+  <!-- GOOGLE TAG: pega aquí tu Google Tag -->
+  <!-- TIKTOK PIXEL: pega aquí tu TikTok Pixel -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #FFF1D0;
+      --sky: #66B1EF;
+      --deep: #2854AC;
+      --ink: #1a1a2e;
+      --mist: #f7f0e3;
+      --warm-white: #fffdf7;
+      --text-muted: #7a7060;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .bar {
+      background: var(--deep);
+      color: white;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+    .bar span { font-style: italic; color: var(--cream); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(255, 253, 247, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 14px 40px;
+      box-shadow: 0 1px 20px rgba(40,84,172,0.08);
+    }
+    .nav-logo img {
+      height: 48px;
+      filter: brightness(0) invert(1);
+      transition: filter 0.4s;
+    }
+    nav.scrolled .nav-logo img {
+      filter: none;
+    }
+    .nav-links {
+      display: none;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--ink); }
+    .nav-links a:hover { color: var(--sky); }
+    .nav-cta {
+      background: var(--sky);
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--deep); transform: translateY(-1px); }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/7_copy_lrkn3e.jpg') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(26,26,46,0.55) 0%,
+        rgba(40,84,172,0.25) 50%,
+        rgba(26,26,46,0.4) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 120px 24px 80px;
+      max-width: 780px;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 8vw, 80px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.4s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--cream);
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 40px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.6s forwards;
+    }
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.8s forwards;
+    }
+    .btn-primary {
+      background: var(--sky);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--deep);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(40,84,172,0.35);
+    }
+    .btn-microcopy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.04em;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s 1.4s forwards;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    .scroll-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 80px 24px; }
+    @media (min-width: 768px) { section { padding: 100px 40px; } }
+    @media (min-width: 1200px) { section { padding: 120px 80px; } }
+
+    .container { max-width: 1140px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .section-title em { font-style: italic; color: var(--deep); }
+
+    /* ── PROBLEMA ── */
+    .problema {
+      background: var(--mist);
+    }
+    .problema-inner {
+      display: grid;
+      gap: 60px;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .problema-inner { grid-template-columns: 1fr 1fr; }
+    }
+    .problema-text p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #4a4035;
+      margin-bottom: 20px;
+    }
+    .problema-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--deep);
+      border-left: 3px solid var(--sky);
+      padding-left: 24px;
+      margin: 32px 0;
+      line-height: 1.4;
+    }
+    .problema-image {
+      position: relative;
+    }
+    .problema-image img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+    .problema-image::before {
+      content: '';
+      position: absolute;
+      top: -16px; left: -16px;
+      right: 16px; bottom: 16px;
+      border: 2px solid var(--sky);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    /* ── PROCESO ── */
+    .proceso { background: white; }
+    .proceso-grid {
+      display: grid;
+      gap: 40px;
+      margin-top: 60px;
+    }
+    @media (min-width: 768px) { .proceso-grid { grid-template-columns: repeat(3, 1fr); } }
+    .proceso-step {
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .proceso-step:hover { transform: translateY(-6px); }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--deep);
+      margin-bottom: 12px;
+    }
+    .step-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .proceso-step::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--sky);
+      margin: 24px auto 0;
+    }
+
+    /* ── PROMESA ── */
+    .promesa {
+      background: var(--deep);
+      text-align: center;
+    }
+    .promesa .section-title { color: white; }
+    .promesa .section-title em { color: var(--cream); }
+    .promesa p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      max-width: 640px;
+      margin: 0 auto 40px;
+    }
+    .promesa .btn-primary { background: var(--cream); color: var(--deep); }
+    .promesa .btn-primary:hover { background: white; }
+
+    /* ── PORTAFOLIO ── */
+    .portafolio { background: var(--mist); }
+    .portafolio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 48px;
+    }
+    @media (min-width: 768px) {
+      .portafolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .portafolio-grid .foto-featured {
+        grid-column: span 2;
+      }
+    }
+    .foto-item {
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .foto-item img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .foto-featured img { aspect-ratio: 16/9; }
+    @media (min-width: 768px) { .foto-featured img { aspect-ratio: 3/2; } }
+    .foto-item:hover img { transform: scale(1.04); }
+    .foto-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(40,84,172,0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .foto-item:hover::after { opacity: 1; }
+    .portafolio-cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .btn-outline {
+      border: 1.5px solid var(--deep);
+      color: var(--deep);
+      background: transparent;
+      padding: 14px 36px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { background: var(--deep); color: white; }
+
+    /* ── SOBRE MÍ ── */
+    .sobre { background: white; }
+    .sobre-inner {
+      display: grid;
+      gap: 60px;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .sobre-inner { grid-template-columns: 2fr 3fr; }
+    }
+    .sobre-photo {
+      position: relative;
+    }
+    .sobre-photo img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .sobre-photo-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      background: var(--sky);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 11px;
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      line-height: 1.3;
+      padding: 12px;
+    }
+    .sobre-text .section-eyebrow { margin-bottom: 8px; }
+    .sobre-text .section-title { margin-bottom: 20px; }
+    .sobre-text p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: #4a4035;
+      margin-bottom: 16px;
+    }
+    .sobre-stats {
+      display: flex;
+      gap: 32px;
+      margin: 32px 0;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--deep);
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── TESTIMONIOS ── */
+    .testimonios { background: var(--mist); }
+    .testimonios .section-title { text-align: center; margin-bottom: 8px; }
+    .testimonios .section-eyebrow { text-align: center; }
+    .test-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    @media (min-width: 768px) { .test-grid { grid-template-columns: repeat(3, 1fr); } }
+    .test-card {
+      background: white;
+      padding: 36px 28px;
+      position: relative;
+    }
+    .test-quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      color: var(--cream);
+      line-height: 0.6;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .test-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .test-divider {
+      width: 32px;
+      height: 2px;
+      background: var(--sky);
+      margin-bottom: 16px;
+    }
+    .test-name {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--deep);
+    }
+    .test-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .test-stars {
+      color: var(--sky);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      background: var(--cream);
+      text-align: center;
+    }
+    .cta-final .section-title { color: var(--ink); }
+    .cta-final p {
+      font-size: 17px;
+      color: #6b5b45;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .cta-microcopy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .cta-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: white;
+      padding: 16px 32px;
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .cta-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
+    .cta-whatsapp svg { width: 20px; height: 20px; fill: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 48px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+    }
+    .footer-logo img {
+      height: 40px;
+      filter: brightness(0) invert(1);
+      opacity: 0.8;
+    }
+    .footer-social {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-social a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .footer-social a:hover { color: var(--sky); }
+    .footer-legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.5; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="bar">
+    <span>Lugares limitados para sesiones — </span> Agenda hoy y guarda tu Hora Azul
+  </div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <div class="nav-logo">
+      <a href="#hero">
+        <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/HA_LOGO_copy_risxon.png" alt="Hora Azul Fotografía">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#portafolio">Portafolio</a></li>
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#testimonios">Historias</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta">Agenda tu sesión</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Fotografía de familia y pareja · México</p>
+      <h1 class="hero-title">
+        Pausas guiadas para volver a conectar con <em>quienes más amas</em>
+      </h1>
+      <p class="hero-sub">La cámara es la excusa.<br>Lo importante es la conexión.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Guarda tu Hora Azul</a>
+        <span class="btn-microcopy">Sin compromiso · Respondo en menos de 24h</span>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Descubre más</span>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="problema" id="problema">
+    <div class="container">
+      <div class="problema-inner">
+        <div class="problema-text reveal">
+          <p class="section-eyebrow">¿Te suena familiar?</p>
+          <h2 class="section-title">El tiempo pasa. <em>Siempre</em> con prisa.</h2>
+          <p>Vives corriendo. Entre el trabajo, la rutina y el teléfono en la mano, los momentos más importantes se te escurren sin haberlos realmente <em>habitado</em>.</p>
+          <blockquote class="problema-quote">
+            "Siento que los momentos se me van sin que realmente los viva."
+          </blockquote>
+          <p>Una sesión de Hora Azul no es solo una sesión de fotos. Es una pausa intencional. Un espacio sin pantallas, sin poses, sin presión — solo tú y las personas que más amas, presentes de verdad.</p>
+        </div>
+        <div class="problema-image reveal reveal-delay-2">
+          <!-- Reemplaza con tu foto: images/problema.jpg -->
+          <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/7_copy_lrkn3e.jpg" alt="Familia conectando en la naturaleza" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="proceso" id="proceso">
+    <div class="container">
+      <div style="text-align:center;" class="reveal">
+        <p class="section-eyebrow">Cómo funciona</p>
+        <h2 class="section-title">Tu sesión, <em>paso a paso</em></h2>
+      </div>
+      <div class="proceso-grid">
+        <div class="proceso-step reveal reveal-delay-1">
+          <div class="step-num">01</div>
+          <div class="step-title">Conversamos</div>
+          <p class="step-desc">Platicamos sobre tu familia, tus dinámicas y lo que quieres recordar. Diseñamos juntos una experiencia hecha a tu medida.</p>
+        </div>
+        <div class="proceso-step reveal reveal-delay-2">
+          <div class="step-num">02</div>
+          <div class="step-title">Tu pausa guiada</div>
+          <p class="step-desc">Durante la sesión te guío con actividades y momentos que invitan a la conexión real — sin poses forzadas, sin artificios.</p>
+        </div>
+        <div class="proceso-step reveal reveal-delay-3">
+          <div class="step-num">03</div>
+          <div class="step-title">Tus recuerdos</div>
+          <p class="step-desc">Recibes fotos que no solo capturan cómo se ven, sino cómo se sienten. Imágenes que en 20 años seguirán diciéndote algo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMESA -->
+  <section class="promesa">
+    <div class="container">
+      <p class="section-eyebrow" style="color: var(--sky); text-align:center;">La transformación</p>
+      <h2 class="section-title reveal" style="color:white; text-align:center;">
+        Conectar de forma <em>profunda e íntima</em>,<br>estar presente y en paz para que la vida no pase de largo.
+      </h2>
+      <p class="reveal">Cuando termina la sesión, no solo tienes fotos. Tienes el recuerdo de haber estado ahí, de verdad, con ellos. Y eso no tiene precio.</p>
+      <div class="reveal">
+        <a href="#cta" class="btn-primary">Quiero vivir esto — Agenda tu sesión</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTAFOLIO -->
+  <section class="portafolio" id="portafolio">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <p class="section-eyebrow">Portafolio</p>
+        <h2 class="section-title">Momentos que <em>cuentan historias</em></h2>
+      </div>
+      <div class="portafolio-grid">
+        <!-- REEMPLAZA las imágenes con tus fotos: images/portfolio-1.jpg ... portfolio-5.jpg -->
+        <div class="foto-item foto-featured reveal">
+          <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/7_copy_lrkn3e.jpg" alt="Sesión de familia" loading="lazy">
+        </div>
+        <div class="foto-item reveal reveal-delay-1">
+          <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/PresetImageFill0-24.jpg" alt="Pareja conectando" loading="lazy">
+        </div>
+        <div class="foto-item reveal reveal-delay-1">
+          <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/PresetImageFill1-25.jpg" alt="Retrato familiar" loading="lazy">
+        </div>
+        <div class="foto-item reveal reveal-delay-2">
+          <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/PresetImageFill2-26.jpg" alt="Momento de pareja" loading="lazy">
+        </div>
+        <div class="foto-item reveal reveal-delay-2">
+          <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/PresetImageFill3-27.jpg" alt="Sesión outdoor" loading="lazy">
+        </div>
+      </div>
+      <div class="portafolio-cta reveal">
+        <a href="#cta" class="btn-outline">Ver más trabajo → Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre-inner">
+        <div class="sobre-photo reveal">
+          <!-- REEMPLAZA con tu foto: images/profile.jpg -->
+          <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/HA_LOGO_copy_risxon.png" alt="Fotógrafa Hora Azul" loading="lazy">
+          <div class="sobre-photo-badge">Hora<br>Azul</div>
+        </div>
+        <div class="sobre-text reveal reveal-delay-2">
+          <p class="section-eyebrow">Conoce a tu fotógrafa</p>
+          <h2 class="section-title">Soy quien va a <em>guardar</em> tus momentos</h2>
+          <p>Creo que las mejores fotos no se planean — se sienten. Mi trabajo es crear el espacio para que la conexión ocurra de forma natural, y estar ahí cuando sucede.</p>
+          <p>Especialista en retratos de familia y pareja, me apasiona la luz de final del día, la risa inesperada y esos silencios llenos de ternura que casi nadie nota.</p>
+          <div class="sobre-stats">
+            <div class="stat-item">
+              <span class="stat-num">200+</span>
+              <span class="stat-label">Familias fotografiadas</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">5★</span>
+              <span class="stat-label">Reseñas de clientes</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">5+</span>
+              <span class="stat-label">Años de experiencia</span>
+            </div>
+          </div>
+          <a href="#cta" class="btn-outline">Trabajemos juntos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonios" id="testimonios">
+    <div class="container">
+      <p class="section-eyebrow reveal">Lo que dicen</p>
+      <h2 class="section-title reveal">Historias de <em>conexión real</em></h2>
+      <div class="test-grid">
+        <div class="test-card reveal reveal-delay-1">
+          <span class="test-quote-mark">"</span>
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">No esperaba que una sesión de fotos pudiera hacerme llorar de felicidad. Nos hizo estar presentes de una forma que no recordaba. Estas fotos son mis favoritas de toda la vida.</p>
+          <div class="test-divider"></div>
+          <div class="test-name">Sofía M.</div>
+          <div class="test-role">Sesión familiar · Ciudad de México</div>
+        </div>
+        <div class="test-card reveal reveal-delay-2">
+          <span class="test-quote-mark">"</span>
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">Mi pareja y yo íbamos con nervios, pero desde el primer minuto nos sentimos totalmente cómodos. Las fotos capturan exactamente cómo nos sentimos el uno por el otro.</p>
+          <div class="test-divider"></div>
+          <div class="test-name">Carlos y Ana</div>
+          <div class="test-role">Sesión de pareja · Guadalajara</div>
+        </div>
+        <div class="test-card reveal reveal-delay-3">
+          <span class="test-quote-mark">"</span>
+          <div class="test-stars">★★★★★</div>
+          <p class="test-text">Mis hijos normalmente odian las fotos. Con Hora Azul estuvieron jugando y riendo todo el tiempo. Las imágenes son mágicas — las veo y las vuelvo a vivir.</p>
+          <div class="test-divider"></div>
+          <div class="test-name">Valentina R.</div>
+          <div class="test-role">Sesión familiar · Monterrey</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final" id="cta">
+    <div class="container">
+      <p class="section-eyebrow reveal">¿Lista para tu pausa?</p>
+      <h2 class="section-title reveal">Guarda tu <em>Hora Azul</em></h2>
+      <p class="reveal">Los cupos son limitados para garantizar que cada sesión sea una experiencia única y personal. Escríbeme hoy y eligamos juntos la fecha perfecta.</p>
+      <div class="cta-actions reveal">
+        <!-- REEMPLAZA +521234567890 con tu número de WhatsApp real -->
+        <a href="https://wa.me/521234567890?text=Hola!%20Quiero%20agendar%20mi%20Hora%20Azul%20%F0%9F%8C%87" class="cta-whatsapp" target="_blank">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Escríbeme por WhatsApp
+        </a>
+        <span class="cta-microcopy">Sin compromiso · Respondo antes de 24 horas · Cupos limitados por mes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/HA_LOGO_copy_risxon.png" alt="Hora Azul Fotografía">
+      </div>
+      <div class="footer-social">
+        <!-- REEMPLAZA los links con tus redes reales -->
+        <a href="https://instagram.com/horazulfotografia" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@horazulfotografia" target="_blank">TikTok</a>
+        <a href="https://facebook.com/horazulfotografia" target="_blank">Facebook</a>
+      </div>
+      <p class="footer-legal">
+        © 2025 Hora Azul Fotografía · 
+        <a href="#" style="color:inherit; text-decoration:none;">Aviso de privacidad</a> · 
+        Todos los derechos reservados
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll behavior
+    const nav = document.getElementById('mainNav');
+    // Account for announcement bar height
+    let barHeight = document.querySelector('.bar').offsetHeight;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > barHeight) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

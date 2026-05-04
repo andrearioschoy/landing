@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hora Azul Fotografía</title>
+
+<style>
+:root{
+--cream:#FFF1D0;
+--blue:#66B1EF;
+--navy:#2854AC;
+--text:#1a1714;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Arial, sans-serif;
+color:var(--text);
+background:#fff;
+line-height:1.6;
+}
+
+img{
+width:100%;
+height:100%;
+object-fit:contain;
+background:#000;
+}
+
+.section{
+padding:60px 20px;
+text-align:center;
+}
+
+.section p{
+max-width:620px;
+margin:12px auto;
+}
+
+.topbar{
+background:var(--navy);
+color:var(--cream);
+text-align:center;
+padding:10px;
+font-size:12px;
+letter-spacing:.15em;
+text-transform:uppercase;
+}
+
+.hero{
+height:100vh;
+display:flex;
+align-items:flex-end;
+padding:30px;
+color:white;
+background:
+linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.55)),
+url('https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/7_copy_lrkn3e.jpg') center/cover;
+}
+
+.hero h1{
+font-size:clamp(34px,7vw,64px);
+line-height:1.05;
+max-width:760px;
+}
+
+.hero p{
+margin-top:16px;
+font-size:18px;
+max-width:560px;
+}
+
+.btn{
+display:inline-block;
+margin-top:24px;
+padding:14px 24px;
+background:var(--navy);
+color:white;
+text-decoration:none;
+font-size:12px;
+letter-spacing:.1em;
+text-transform:uppercase;
+}
+
+.btn-wa{
+display:flex;
+justify-content:center;
+align-items:center;
+width:100%;
+max-width:420px;
+margin:24px auto 0;
+padding:18px;
+background:#25D366;
+color:white;
+text-decoration:none;
+font-size:12px;
+letter-spacing:.12em;
+text-transform:uppercase;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:10px;
+margin-top:30px;
+}
+
+.about{
+display:grid;
+gap:24px;
+max-width:900px;
+margin:auto;
+align-items:center;
+}
+
+.about div{
+text-align:center;
+}
+
+.price-box{
+max-width:650px;
+margin:24px auto 0;
+text-align:left;
+line-height:1.8;
+}
+
+.price-box p{
+margin:8px 0;
+}
+
+@media(min-width:768px){
+.about{grid-template-columns:1fr 1fr}
+.about div{text-align:left}
+}
+
+footer{
+padding:40px;
+text-align:center;
+font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+Conexión ahora, memoria después.
+</div>
+
+<section class="hero">
+<div>
+<h1>Deja de posar. Empieza a sentir.</h1>
+<p>Sesiones fotográficas guiadas para detenerte, conectar de verdad y guardar lo que sí importa.</p>
+<a class="btn" href="#contact">Guarda tu Hora Azul</a>
+</div>
+</section>
+
+<section class="section">
+<h2>Tu vida no está mal. Solo va demasiado rápido.</h2>
+<p>Amas a tu familia, tu pareja o esta etapa de tu vida. Pero a veces sientes que todo pasa en automático.</p>
+<p>No quieres más fotos bonitas. Quieres recordar que sí estuviste ahí.</p>
+</section>
+
+<section class="section">
+<h2>¿Qué es Hora Azul?</h2>
+<p>Hora Azul son sesiones de fotografía guiadas donde te ayudo a conectar contigo o con las personas que amas.</p>
+<p>La fotografía es la evidencia de esa experiencia: imágenes naturales que se convierten en recuerdos que sí se quedan.</p>
+</section>
+
+<section class="section">
+<h2>Para quien siente esto</h2>
+<p>“Siento que no estoy disfrutando a mi familia.”</p>
+<p>“Todo va demasiado rápido.”</p>
+<p>“Quiero recordar esto de verdad, no solo tener fotos.”</p>
+</section>
+
+<section class="section">
+<h2>La experiencia</h2>
+<p>Al inicio puede sentirse incómodo. Es normal.</p>
+<p>Después bajan las defensas, dejas de pensar en la cámara y aparece lo real.</p>
+<p>Ahí empieza tu Hora Azul.</p>
+</section>
+
+<section class="section">
+<h2>Portafolio</h2>
+<div class="grid">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603336/IMG_0217_gltpwk.jpg" alt="Sesión Hora Azul">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603953/1_expx4q.jpg" alt="Sesión de familia">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602313/8_w4eqm7.jpg" alt="Retrato natural">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602440/6_pxbus1.jpg" alt="Fotografía emocional">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603279/5f6d219a-f858-42bd-984a-14b6536a9920_2_ehfqni.jpg" alt="Momento familiar">
+</div>
+</section>
+
+<section class="section">
+<h2>Desde $4,700 MXN</h2>
+<p><strong>Incluye:</strong></p>
+
+<div class="price-box">
+<p>• Pequeña llamada para romper el hielo, dar tips para prepararse y hablar de lo que se vivirá ese día.</p>
+<p>• Sesión fotográfica guiada de 1 hora.</p>
+<p>• Acompañamiento personalizado.</p>
+<p>• Entrega en galería digital.</p>
+<p>• Memoria tangible: foto enmarcada de tu Hora Azul.</p>
+</div>
+
+<p>Pregunta por los diferentes métodos de pago.</p>
+</section>
+
+<section class="section about">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602224/DSC07181-Editar_y1i63t.jpg" alt="Fotógrafa Hora Azul">
+<div>
+<h2>Sobre Hora Azul</h2>
+<p>Soy fotógrafa y cineasta mexicana. Me interesan las historias humanas, la conexión y la presencia como forma de vivir.</p>
+<p>No busco que te veas perfecto. Busco crear un espacio donde dejes de estar en automático.</p>
+</div>
+</section>
+
+<section class="section">
+<h2>Testimonios</h2>
+<div class="grid">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603228/17_mr9ov0.png" alt="Testimonio Hora Azul 1">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603228/15_bzgmsp.png" alt="Testimonio Hora Azul 2">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603229/14_xcrpqe.png" alt="Testimonio Hora Azul 3">
+</div>
+</section>
+
+<section class="section" id="contact">
+<h2>Todavía estás a tiempo de detenerte.</h2>
+<p>Hablemos y diseñemos tu Hora Azul.</p>
+
+<a 
+class="btn-wa"
+href="https://wa.me/525551376253?text=Hola%2C%20quiero%20agendar%20mi%20Hora%20Azul%20🌅"
+target="_blank"
+rel="noopener"
+>
+Escríbeme por WhatsApp
+</a>
+
+</section>
+
+<footer>
+Hora Azul Fotografía
+</footer>
+
+</body>
+</html>

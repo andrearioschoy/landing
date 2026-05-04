@@ -1,483 +1,351 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hora Azul Fotografía | Retratos de familia y pareja · México</title>
-  <meta name="description" content="Pausas guiadas para volver a conectar con quienes más amas. Fotografía de familia y pareja — la cámara es la excusa, lo importante es la conexión.">
-  <meta property="og:title" content="Hora Azul Fotografía">
-  <meta property="og:description" content="Pausas guiadas para volver a conectar con quienes más amas.">
-  <meta property="og:image" content="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/logo_fpqtx8.png">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602207/mini-logo_aax5c9.png">
-  <!-- META PIXEL: pega tu código aquí -->
-  <!-- GOOGLE TAG (GA4): pega tu código aquí -->
-  <!-- TIKTOK PIXEL: pega tu código aquí -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root{--white:#ffffff;--cream:#FFF1D0;--sky:#66B1EF;--navy:#2854AC;--ink:#1a1714;--muted:#8a7d70;--border:#e8e0d4;--light:#f8f6f2}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Outfit',sans-serif;font-weight:300;background:var(--white);color:var(--ink);overflow-x:hidden}
-    img{display:block;max-width:100%}
-    a{text-decoration:none;color:inherit}
-    /* BAR */
-    .bar{background:var(--navy);color:rgba(255,255,255,.85);text-align:center;padding:9px 20px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
-    .bar strong{color:var(--cream);font-weight:400}
-    /* NAV */
-    .nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:24px 40px;transition:background .45s,padding .4s,box-shadow .4s}
-    .nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);padding:13px 40px;box-shadow:0 1px 0 var(--border)}
-    .nav-logo img{height:44px;filter:brightness(0) invert(1);transition:filter .4s}
-    .nav.solid .nav-logo img{filter:none}
-    .nav-links{display:none;list-style:none;gap:40px}
-    .nav-links a{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.78);transition:color .3s}
-    .nav.solid .nav-links a{color:var(--ink)}
-    .nav-links a:hover{color:var(--sky)}
-    .nav-cta{font-family:'Outfit',sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;border:1px solid rgba(255,255,255,.5);color:white;background:transparent;padding:10px 22px;cursor:pointer;transition:all .3s}
-    .nav.solid .nav-cta{border-color:var(--navy);color:var(--navy)}
-    .nav-cta:hover{background:var(--sky);border-color:var(--sky);color:white}
-    @media(min-width:900px){.nav-links{display:flex}}
-    /* HERO */
-    .hero{position:relative;height:100svh;min-height:640px;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
-    .hero-veil{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,23,20,.62) 0%,rgba(26,23,20,.28) 60%,transparent 100%),linear-gradient(to top,rgba(26,23,20,.45) 0%,transparent 50%)}
-    .hero-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 44px 76px;max-width:860px}
-    .hero-tag{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--sky);margin-bottom:20px;opacity:0;animation:up .9s .15s cubic-bezier(.22,1,.36,1) forwards}
-    .hero-h1{font-family:'Cormorant',serif;font-size:clamp(40px,6.5vw,78px);font-weight:400;line-height:1.05;color:white;margin-bottom:22px;opacity:0;animation:up 1s .35s cubic-bezier(.22,1,.36,1) forwards}
-    .hero-h1 em{font-style:italic;color:var(--cream)}
-    .hero-sub{font-size:clamp(15px,1.8vw,18px);font-weight:300;color:rgba(255,255,255,.72);line-height:1.72;margin-bottom:40px;opacity:0;animation:up 1s .55s cubic-bezier(.22,1,.36,1) forwards}
-    .hero-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px;opacity:0;animation:up 1s .75s cubic-bezier(.22,1,.36,1) forwards}
-    .btn{font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;display:inline-block;padding:16px 42px;cursor:pointer;border:none;transition:background .3s,transform .25s,box-shadow .3s}
-    .btn-sky{background:var(--sky);color:white}
-    .btn-sky:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 16px 40px rgba(40,84,172,.3)}
-    .btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--navy);padding:14px 36px}
-    .btn-outline:hover{background:var(--navy);color:white}
-    .hero-micro{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.06em}
-    .hero-geo{position:absolute;bottom:76px;right:44px;z-index:2;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);writing-mode:vertical-rl;transform:rotate(180deg);opacity:0;animation:fadein 1s 1.4s forwards}
-    .scroll-line{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:fadein 1s 1.6s forwards}
-    .scroll-line span{display:block;width:1px;height:56px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);margin:0 auto;animation:pulse 2.4s infinite}
-    /* SECTIONS */
-    .section{padding:88px 24px}
-    @media(min-width:768px){.section{padding:108px 48px}}
-    @media(min-width:1100px){.section{padding:120px 88px}}
-    .wrap{max-width:1200px;margin:0 auto}
-    .eyebrow{display:block;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--sky);margin-bottom:14px}
-    .h2{font-family:'Cormorant',serif;font-size:clamp(30px,4.5vw,56px);font-weight:400;line-height:1.1;margin-bottom:28px}
-    .h2 em{font-style:italic;color:var(--navy)}
-    /* PROBLEMA */
-    .problema{background:var(--white)}
-    .prob-grid{display:grid;gap:64px;align-items:center}
-    @media(min-width:900px){.prob-grid{grid-template-columns:55fr 45fr}}
-    .prob-text p{font-size:16.5px;line-height:1.95;color:#5c4e3d;margin-bottom:18px}
-    .pull{font-family:'Cormorant',serif;font-size:clamp(20px,2.8vw,28px);font-style:italic;color:var(--navy);border-left:3px solid var(--sky);padding-left:22px;margin:30px 0;line-height:1.45}
-    .prob-photo{position:relative}
-    .prob-photo img{width:100%;aspect-ratio:3/4;object-fit:cover}
-    .prob-photo::after{content:'';position:absolute;top:18px;left:18px;right:-18px;bottom:-18px;border:1.5px solid var(--sky);opacity:.28;pointer-events:none;z-index:-1}
-    /* PORTFOLIO */
-    .portfolio{background:var(--white);border-top:1px solid var(--border)}
-    .port-hd{text-align:center;margin-bottom:56px}
-    .cols5{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-    @media(min-width:600px){.cols5{grid-template-columns:repeat(3,1fr)}}
-    @media(min-width:1000px){.cols5{grid-template-columns:repeat(5,1fr)}}
-    @media(min-width:1000px){.cols5 .f:nth-child(1){margin-top:0}.cols5 .f:nth-child(2){margin-top:44px}.cols5 .f:nth-child(3){margin-top:14px}.cols5 .f:nth-child(4){margin-top:58px}.cols5 .f:nth-child(5){margin-top:8px}}
-    .f{overflow:hidden;cursor:zoom-in}
-    .f img{width:100%;aspect-ratio:2/3;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94),filter .5s;filter:saturate(.88)}
-    .f:hover img{transform:scale(1.06);filter:saturate(1.08)}
-    /* GALLERY */
-    .gallery{background:var(--light)}
-    .ggrid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
-    @media(min-width:600px){.ggrid{grid-template-columns:repeat(3,1fr)}}
-    @media(min-width:1000px){.ggrid{grid-template-columns:repeat(4,1fr)}}
-    .gf{overflow:hidden;cursor:zoom-in}
-    .gf img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94),filter .5s;filter:saturate(.84) brightness(.98)}
-    .gf:nth-child(4n+2) img{aspect-ratio:4/5}
-    .gf:hover img{transform:scale(1.05);filter:saturate(1.04) brightness(1)}
-    .port-foot{text-align:center;margin-top:52px}
-    /* SOBRE */
-    .sobre{position:relative;background:var(--white);padding:0}
-    .sobre-bg{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 25%}
-    @media(max-width:767px){.sobre-bg{aspect-ratio:4/3}}
-    .sobre-card{background:var(--white);padding:52px 44px;max-width:500px;position:relative;margin:-88px auto 0;z-index:10}
-    @media(min-width:1000px){.sobre-card{position:absolute;right:7%;top:50%;transform:translateY(-50%);margin:0;box-shadow:0 20px 80px rgba(26,23,20,.12)}}
-    .sobre-card .eyebrow{margin-bottom:10px}
-    .sobre-card h2{font-family:'Cormorant',serif;font-size:clamp(28px,3.2vw,44px);font-weight:400;line-height:1.08;margin-bottom:18px}
-    .sobre-card p{font-size:15.5px;line-height:1.9;color:#5c4e3d;margin-bottom:14px}
-    .sobre-rule{width:32px;height:2px;background:var(--sky);margin:22px 0}
-    .sobre-stats{display:flex;gap:28px;margin-bottom:30px;flex-wrap:wrap}
-    .st-n{font-family:'Cormorant',serif;font-size:36px;color:var(--navy);display:block;line-height:1;margin-bottom:4px}
-    .st-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-    /* PRONÓSTICO */
-    .pronostico{background:var(--cream)}
-    .pro-grid{display:grid;gap:64px;align-items:center}
-    @media(min-width:900px){.pro-grid{grid-template-columns:1fr 1fr}}
-    .pro-step{display:flex;gap:20px;padding:28px 0;border-bottom:1px solid rgba(40,84,172,.14)}
-    .pro-step:last-child{border-bottom:none}
-    .pro-num{font-family:'Cormorant',serif;font-size:48px;font-weight:300;color:rgba(40,84,172,.18);line-height:1;min-width:52px}
-    .pro-step h3{font-family:'Cormorant',serif;font-size:22px;font-weight:400;color:var(--navy);margin-bottom:8px}
-    .pro-step p{font-size:15px;line-height:1.85;color:#6a5a48}
-    .pro-image img{width:100%;aspect-ratio:4/5;object-fit:cover}
-    /* PROCESO */
-    .proceso{background:var(--white);border-top:1px solid var(--border)}
-    .proc-hd{text-align:center;margin-bottom:72px}
-    .proc-steps{display:grid;gap:56px}
-    @media(min-width:768px){.proc-steps{grid-template-columns:repeat(3,1fr)}}
-    .pstep-num{font-family:'Cormorant',serif;font-size:88px;font-weight:300;-webkit-text-stroke:1.5px var(--border);color:transparent;line-height:1;margin-bottom:8px}
-    .pstep-bar{width:28px;height:2px;background:var(--sky);margin-bottom:18px}
-    .pstep h3{font-family:'Cormorant',serif;font-size:22px;font-weight:400;color:var(--navy);margin-bottom:10px}
-    .pstep p{font-size:15px;line-height:1.85;color:var(--muted)}
-    /* PROMESA */
-    .promesa{background:var(--navy);text-align:center}
-    .promesa .h2{color:white}
-    .promesa .h2 em{color:var(--cream)}
-    .promesa p{font-size:17px;color:rgba(255,255,255,.68);max-width:640px;margin:0 auto 44px;line-height:1.9}
-    .promesa .btn-sky{background:var(--cream);color:var(--navy)}
-    .promesa .btn-sky:hover{background:white;box-shadow:0 16px 40px rgba(0,0,0,.18)}
-    .promesa-micro{margin-top:14px;font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.06em}
-    /* STATS */
-    .stats{background:var(--light);padding:60px 40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:32px;text-align:center}
-    @media(min-width:640px){.stats-inner{grid-template-columns:repeat(4,1fr)}}
-    .stat-n{font-family:'Cormorant',serif;font-size:48px;font-weight:400;color:var(--navy);display:block;line-height:1;margin-bottom:6px}
-    .stat-l{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-    /* TESTIMONIOS */
-    .testimonios{background:var(--white)}
-    .test-hd{text-align:center;margin-bottom:56px}
-    .test-grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
-    @media(min-width:640px){.test-grid{grid-template-columns:repeat(3,1fr)}}
-    .tcard{background:var(--light);overflow:hidden;transition:transform .35s,box-shadow .35s}
-    .tcard:hover{transform:translateY(-4px);box-shadow:0 10px 40px rgba(26,23,20,.1)}
-    .tcard img{width:100%;height:auto}
-    /* PASOS */
-    .pasos{background:var(--white);border-top:1px solid var(--border)}
-    .pasos-grid{display:grid;gap:72px;align-items:center}
-    @media(min-width:900px){.pasos-grid{grid-template-columns:1fr 1fr}}
-    .pasos-text p{font-size:16px;line-height:1.9;color:#5c4e3d;margin-bottom:20px}
-    .pasos-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
-    /* CTA */
-    .cta-final{background:var(--cream);text-align:center}
-    .cta-final .h2{color:var(--ink)}
-    .cta-final .h2 em{color:var(--navy)}
-    .cta-final p{font-size:16.5px;color:#6a5a48;max-width:540px;margin:0 auto 44px;line-height:1.9}
-    .btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:white;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:17px 36px;transition:background .3s,transform .25s}
-    .btn-wa:hover{background:#128C7E;transform:translateY(-2px)}
-    .btn-wa svg{width:18px;height:18px;fill:white;flex-shrink:0}
-    .cta-micro{margin-top:14px;font-size:11px;color:var(--muted);letter-spacing:.06em}
-    /* FOOTER */
-    footer{background:var(--ink);padding:48px 44px 28px}
-    .foot-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
-    .foot-inner img{height:36px;filter:brightness(0) invert(1);opacity:.6}
-    .foot-links{display:flex;gap:24px}
-    .foot-links a{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);transition:color .3s}
-    .foot-links a:hover{color:var(--sky)}
-    .foot-legal{font-size:10px;color:rgba(255,255,255,.16);letter-spacing:.05em}
-    /* LIGHTBOX */
-    .lb{display:none;position:fixed;inset:0;background:rgba(26,23,20,.95);z-index:1000;align-items:center;justify-content:center}
-    .lb.open{display:flex}
-    .lb-img{max-width:92vw;max-height:92vh;object-fit:contain}
-    .lb-x,.lb-p,.lb-n{position:absolute;background:none;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:28px;transition:color .2s;line-height:1}
-    .lb-x{top:22px;right:26px;font-size:24px}
-    .lb-p{top:50%;left:16px;transform:translateY(-50%);font-size:36px;padding:12px}
-    .lb-n{top:50%;right:16px;transform:translateY(-50%);font-size:36px;padding:12px}
-    .lb-x:hover,.lb-p:hover,.lb-n:hover{color:white}
-    /* REVEAL */
-    .r{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
-    .r.in{opacity:1;transform:none}
-    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
-    @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-    @keyframes fadein{from{opacity:0}to{opacity:1}}
-    @keyframes pulse{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:.9;transform:scaleY(1.14)}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hora Azul Fotografía | Andrea Ríos</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500&family=Outfit:wght@300;400;500&display=swap');
+
+:root{
+--navy:#2854AC;
+--ink:#1a1714;
+--soft:#f6f7f9;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Outfit',sans-serif;
+color:var(--ink);
+background:white;
+line-height:1.6;
+}
+
+img{
+width:100%;
+display:block;
+border-radius:16px;
+}
+
+h1,h2,h3{
+font-family:'Cormorant',serif;
+font-weight:400;
+}
+
+/* HEADER */
+.header{
+padding:18px 20px 0;
+}
+.logo{
+width:90px;
+margin:auto;
+}
+
+/* HERO */
+.hero{
+display:grid;
+margin-top:20px;
+}
+.hero-img{
+width:100%;
+max-height:60vh;
+object-fit:contain;
+}
+.hero-copy{
+padding:30px 20px;
+text-align:center;
+}
+.hero-phrase{
+font-size:11px;
+letter-spacing:.15em;
+color:var(--navy);
+margin-bottom:14px;
+text-transform:uppercase;
+}
+.hero h1{
+font-size:clamp(34px,8vw,64px);
+color:var(--navy);
+}
+.hero p{
+margin-top:12px;
+max-width:500px;
+margin-inline:auto;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:14px 24px;
+background:var(--navy);
+color:white;
+text-decoration:none;
+font-size:12px;
+letter-spacing:.12em;
+text-transform:uppercase;
+}
+
+@media(min-width:900px){
+.hero{
+grid-template-columns:1fr 1fr;
+align-items:center;
+}
+.hero-img{
+height:85vh;
+object-fit:cover;
+}
+.hero-copy{
+text-align:left;
+padding:60px;
+}
+}
+
+/* SECTIONS */
+.section{
+padding:70px 20px;
+}
+.wrap{
+max-width:1000px;
+margin:auto;
+}
+.center{text-align:center}
+
+.section h2{
+font-size:clamp(30px,5vw,52px);
+color:var(--navy);
+margin-bottom:14px;
+}
+.section p{
+max-width:600px;
+margin:10px auto;
+}
+
+.soft{
+background:var(--soft);
+}
+
+/* VISUAL */
+.visual{
+margin-top:40px;
+max-width:500px;
+margin-inline:auto;
+}
+
+/* STEPS */
+.steps{
+display:grid;
+gap:20px;
+margin-top:40px;
+}
+.step{
+background:white;
+padding:20px;
+border-radius:14px;
+}
+.step span{
+font-size:42px;
+color:rgba(40,84,172,.3);
+}
+.step h3{
+color:var(--navy);
+}
+@media(min-width:800px){
+.steps{
+grid-template-columns:repeat(3,1fr);
+}
+}
+
+/* GALERÍA */
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:40px;
+}
+@media(min-width:700px){
+.gallery{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:1000px){
+.gallery{grid-template-columns:repeat(4,1fr)}
+}
+
+/* PRICE */
+.price-box{
+max-width:600px;
+margin:20px auto;
+text-align:left;
+}
+.btn-wa{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:16px;
+background:#25D366;
+color:white;
+text-decoration:none;
+margin:20px auto;
+max-width:360px;
+font-size:12px;
+letter-spacing:.12em;
+text-transform:uppercase;
+}
+
+/* ABOUT */
+.about{
+display:grid;
+gap:20px;
+align-items:center;
+}
+.about img{
+max-width:180px;
+margin:auto;
+border-radius:999px;
+}
+@media(min-width:800px){
+.about{
+grid-template-columns:200px 1fr;
+}
+}
+
+/* TESTIMONIOS */
+.testimonials{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:30px;
+}
+@media(min-width:800px){
+.testimonials{grid-template-columns:repeat(3,1fr)}
+}
+
+/* FOOTER */
+footer{
+padding:40px 20px;
+text-align:center;
+font-size:12px;
+color:#666;
+}
+.footer-logo{
+width:70px;
+margin:0 auto 10px;
+}
+</style>
 </head>
+
 <body>
 
-<div class="bar" id="bar"><strong>Cupos limitados por mes</strong> &nbsp;—&nbsp; Agenda hoy y guarda tu Hora Azul</div>
-
-<nav class="nav" id="nav">
-  <div class="nav-logo"><a href="#top"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/HA_LOGO_copy_risxon.png" alt="Hora Azul Fotografía" height="44"></a></div>
-  <ul class="nav-links">
-    <li><a href="#portfolio">Portafolio</a></li>
-    <li><a href="#sobre">Sobre mí</a></li>
-    <li><a href="#proceso">Proceso</a></li>
-    <li><a href="#testimonios">Testimonios</a></li>
-  </ul>
-  <a href="#cta" class="nav-cta">Agenda tu sesión</a>
-</nav>
-
-<!-- HERO -->
-<section id="top" style="padding:0;">
-  <div class="hero">
-    <img class="hero-bg" src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/7_copy_lrkn3e.jpg" srcset="https://res.cloudinary.com/dlu6jpw54/image/upload/w_900/v1777602198/7_copy_lrkn3e.jpg 900w,https://res.cloudinary.com/dlu6jpw54/image/upload/w_1800/v1777602198/7_copy_lrkn3e.jpg 1800w" sizes="100vw" alt="Sesión fotográfica Hora Azul" fetchpriority="high">
-    <div class="hero-veil"></div>
-    <div class="hero-body">
-      <span class="hero-tag">Fotografía de familia y pareja · México</span>
-      <h1 class="hero-h1">Pausas guiadas para volver<br>a conectar con <em>quienes más amas</em></h1>
-      <p class="hero-sub">La cámara es la excusa.<br>Lo importante es la conexión.</p>
-      <div class="hero-actions">
-        <a href="#cta" class="btn btn-sky">Guarda tu Hora Azul</a>
-        <span class="hero-micro">Sin compromiso · Respondo en menos de 24 h</span>
-      </div>
-    </div>
-    <p class="hero-geo">Familia · Pareja · Retratos · México</p>
-    <div class="scroll-line"><span></span></div>
-  </div>
-</section>
-
-<!-- PROBLEMA -->
-<section class="section problema">
-  <div class="wrap">
-    <div class="prob-grid">
-      <div class="prob-text r">
-        <span class="eyebrow">¿Te suena familiar?</span>
-        <h2 class="h2">El tiempo pasa.<br><em>Siempre con prisa.</em></h2>
-        <p>Vives corriendo. Entre el trabajo, la rutina y las pantallas, los momentos más importantes se te van sin haberlos <strong>realmente habitado</strong>. Los estás viendo pasar desde lejos.</p>
-        <blockquote class="pull">"Los momentos importantes se me escapan sin que realmente los viva."</blockquote>
-        <p>Una sesión de Hora Azul no es solo una sesión de fotos. Es una <em>pausa intencional</em> — un espacio sin poses, sin presión, donde tú y las personas que más amas pueden estar presentes de verdad y disfrutar la conexión de forma consciente.</p>
-      </div>
-      <div class="prob-photo r d2">
-        <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603336/IMG_0217_gltpwk.jpg" alt="Conexión familiar" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO 5 cols -->
-<section class="section portfolio" id="portfolio">
-  <div class="wrap">
-    <div class="port-hd r">
-      <span class="eyebrow">Portafolio</span>
-      <h2 class="h2">Aquí para contar tu historia<br><em>a través de fotografía auténtica.</em></h2>
-    </div>
-    <div class="cols5">
-      <div class="f r d1" data-lb="0"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603953/1_expx4q.jpg" alt="Foto 2" loading="lazy"></div>
-      <div class="f r d2" data-lb="1"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602313/8_w4eqm7.jpg" alt="Foto 3" loading="lazy"></div>
-      <div class="f r d1" data-lb="2"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602440/6_pxbus1.jpg" alt="Foto 4" loading="lazy"></div>
-      <div class="f r d3" data-lb="3"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603279/5f6d219a-f858-42bd-984a-14b6536a9920_2_ehfqni.jpg" alt="Foto 5" loading="lazy"></div>
-      <div class="f r d2" data-lb="4"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603336/IMG_0274-2_ayznzb.jpg" alt="Foto 6" loading="lazy"></div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY EXTENDED (fotos 7-21) -->
-<section class="section gallery" style="padding-top:10px;padding-bottom:80px;">
-  <div class="wrap">
-    <div class="ggrid">
-      <div class="gf r d1" data-lb="5"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777604144/IMG_0591-2_Large_qugyfc.jpg" alt="Foto 7" loading="lazy"></div>
-      <div class="gf r d2" data-lb="6"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777604143/IMG_8167_Large_jdmtdl.jpg" alt="Foto 8" loading="lazy"></div>
-      <div class="gf r d3" data-lb="7"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603335/IMG_9276_ngsghc.jpg" alt="Foto 9" loading="lazy"></div>
-      <div class="gf r d1" data-lb="8"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603288/IMG_9745_gkopu6.jpg" alt="Foto 10" loading="lazy"></div>
-      <div class="gf r d2" data-lb="9"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603292/IMG_9792_hbpyk8.jpg" alt="Foto 11" loading="lazy"></div>
-      <div class="gf r d3" data-lb="10"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603290/IMG_0197-4_hutun2.jpg" alt="Foto 12" loading="lazy"></div>
-      <div class="gf r d1" data-lb="11"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603287/IMG_9762_lixolb.jpg" alt="Foto 13" loading="lazy"></div>
-      <div class="gf r d2" data-lb="12"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602612/IMG_8202_wzpusc.jpg" alt="Foto 14" loading="lazy"></div>
-      <div class="gf r d3" data-lb="13"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602444/IMG_9689_dd6i65.jpg" alt="Foto 15" loading="lazy"></div>
-      <div class="gf r d1" data-lb="14"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602441/2_m1qhr1.jpg" alt="Foto 16" loading="lazy"></div>
-      <div class="gf r d2" data-lb="15"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602428/7_cttlpw.jpg" alt="Foto 17" loading="lazy"></div>
-      <div class="gf r d3" data-lb="16"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602406/IMG_9673_tbmlvd.jpg" alt="Foto 18" loading="lazy"></div>
-      <div class="gf r d1" data-lb="17"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602403/4_ns9x54.jpg" alt="Foto 19" loading="lazy"></div>
-      <div class="gf r d2" data-lb="18"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602321/IMG_9596_dytats.jpg" alt="Foto 20" loading="lazy"></div>
-      <div class="gf r d3" data-lb="19"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602228/IMG_9751_relfks.jpg" alt="Foto 21" loading="lazy"></div>
-      <div class="gf r d1" data-lb="20"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603336/IMG_0217_gltpwk.jpg" alt="Foto 1" loading="lazy"></div>
-    </div>
-    <div class="port-foot r">
-      <a href="https://instagram.com/horazulfotografia" target="_blank" class="btn btn-outline">Ver más en Instagram →</a>
-    </div>
-  </div>
-</section>
-
-<!-- SOBRE MÍ -->
-<section class="sobre" id="sobre">
-  <img class="sobre-bg" src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602224/DSC07181-Editar_y1i63t.jpg" alt="Fotógrafa Hora Azul" loading="lazy">
-  <div class="sobre-card r">
-    <span class="eyebrow">Conoce a tu fotógrafa</span>
-    <h2>Hora Azul<br><em>Fotografía</em></h2>
-    <div class="sobre-rule"></div>
-    <p>Fotógrafa y cineasta mexicana con una pasión por encontrar y contar nuevas historias de forma <em>auténtica, personal y creativa</em>.</p>
-    <p>Apasionada por los temas humanos, la conexión y la presencia como forma de vivir. Creo que las mejores fotos no se planean — se sienten.</p>
-    <div class="sobre-stats">
-      <div><span class="st-n">200+</span><span class="st-l">Familias</span></div>
-      <div><span class="st-n">5 ★</span><span class="st-l">Reseñas</span></div>
-      <div><span class="st-n">5+</span><span class="st-l">Años</span></div>
-    </div>
-    <a href="#cta" class="btn btn-sky">Trabajemos juntas</a>
-  </div>
-</section>
-
-<!-- PRONÓSTICO -->
-<section class="section pronostico">
-  <div class="wrap">
-    <div class="pro-grid">
-      <div class="r">
-        <span class="eyebrow">¿Cómo se siente?</span>
-        <h2 class="h2">Lo que vives<br><em>durante la sesión</em></h2>
-        <div class="pro-step r d1">
-          <div class="pro-num">01</div>
-          <div><h3>Al inicio puede ser incómodo</h3><p>Es normal sentir nervios o no saber qué hacer. Es el primer paso para soltar el control y estar presente.</p></div>
-        </div>
-        <div class="pro-step r d2">
-          <div class="pro-num">02</div>
-          <div><h3>Bajan las defensas y las expectativas</h3><p>Con guía suave y actividades simples, te olvidas de la cámara. Aparece la emoción real — sin filtros ni poses.</p></div>
-        </div>
-        <div class="pro-step r d3">
-          <div class="pro-num">03</div>
-          <div><h3>Calma, cercanía y gratitud</h3><p>Al final queda una sensación profunda de haber estado ahí de verdad, con los que más amas. Eso no tiene precio.</p></div>
-        </div>
-      </div>
-      <div class="pro-image r d2">
-        <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602441/2_m1qhr1.jpg" alt="Conexión real" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESO -->
-<section class="section proceso" id="proceso">
-  <div class="wrap">
-    <div class="proc-hd r">
-      <span class="eyebrow">Cómo funciona</span>
-      <h2 class="h2">Tu pausa guiada,<br><em>paso a paso</em></h2>
-    </div>
-    <div class="proc-steps">
-      <div class="pstep r d1">
-        <div class="pstep-num">01</div><div class="pstep-bar"></div>
-        <h3>Conversamos</h3>
-        <p>Platicamos sobre tu familia, tus dinámicas y lo que quieres recordar. Diseñamos juntas una experiencia hecha a tu medida — sin poses ni artificios.</p>
-      </div>
-      <div class="pstep r d2">
-        <div class="pstep-num">02</div><div class="pstep-bar"></div>
-        <h3>Tu pausa guiada</h3>
-        <p>Te guío con actividades que invitan a la conexión real. Momentos íntimos, sin presión — disfruta de los que amas de forma completamente consciente.</p>
-      </div>
-      <div class="pstep r d3">
-        <div class="pstep-num">03</div><div class="pstep-bar"></div>
-        <h3>Tus recuerdos para siempre</h3>
-        <p>Recibes fotos digitales y físicas que no solo capturan cómo se ven, sino cómo se sienten. Imágenes que en 20 años seguirán diciéndote algo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROMESA -->
-<section class="section promesa">
-  <div class="wrap">
-    <span class="eyebrow r" style="color:var(--sky);">La transformación</span>
-    <h2 class="h2 r">Conectar de forma <em>profunda e íntima</em>,<br>estar presente para que la vida no pase de largo.</h2>
-    <p class="r">Cuando termina la sesión, no solo tienes fotos. Tienes el recuerdo de haber estado ahí, de verdad, con ellos. Acompañada antes, durante y después — con preparación emocional, guía sensible y una entrega que guarda para siempre lo vivido.</p>
-    <div class="r">
-      <a href="#cta" class="btn btn-sky">Quiero vivir esto — Agenda tu sesión</a>
-      <p class="promesa-micro">Sin compromiso · Cupos limitados por mes</p>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stats-inner">
-    <div class="r"><span class="stat-n">200+</span><span class="stat-l">Familias fotografiadas</span></div>
-    <div class="r d1"><span class="stat-n">5+</span><span class="stat-l">Años de experiencia</span></div>
-    <div class="r d2"><span class="stat-n">100%</span><span class="stat-l">Satisfacción garantizada</span></div>
-    <div class="r d3"><span class="stat-n">★ 5.0</span><span class="stat-l">Reseñas de clientes</span></div>
-  </div>
+<div class="header">
+<img class="logo" src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/HA_LOGO_copy_risxon.png">
 </div>
 
-<!-- TESTIMONIOS -->
-<section class="section testimonios" id="testimonios">
-  <div class="wrap">
-    <div class="test-hd r">
-      <span class="eyebrow">Prueba social</span>
-      <h2 class="h2">Lo que dicen<br><em>quienes ya lo vivieron</em></h2>
-    </div>
-    <div class="test-grid">
-      <div class="tcard r d1"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603228/17_mr9ov0.png" alt="Testimonio 1" loading="lazy"></div>
-      <div class="tcard r d2"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603228/15_bzgmsp.png" alt="Testimonio 2" loading="lazy"></div>
-      <div class="tcard r d3"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603229/14_xcrpqe.png" alt="Testimonio 3" loading="lazy"></div>
-      <div class="tcard r d1"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603234/21_mwcheb.png" alt="Testimonio 4" loading="lazy"></div>
-      <div class="tcard r d2"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603234/20_etimi3.png" alt="Testimonio 5" loading="lazy"></div>
-      <div class="tcard r d3"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603234/16_h3mvaz.png" alt="Testimonio 6" loading="lazy"></div>
-      <div class="tcard r d1"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603235/18_bqjbmb.png" alt="Testimonio 7" loading="lazy"></div>
-      <div class="tcard r d2"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603235/22_iksfjj.png" alt="Testimonio 8" loading="lazy"></div>
-      <div class="tcard r d3"><img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603236/19_lbrz0g.png" alt="Testimonio 9" loading="lazy"></div>
-    </div>
-  </div>
+<header class="hero">
+
+<img class="hero-img" src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/7_copy_lrkn3e.jpg">
+
+<div class="hero-copy">
+<p class="hero-phrase">Conexión ahora, memoria después.</p>
+<h1>Pausas guiadas para volver a conectar con quienes más amas.</h1>
+<p>La cámara es la excusa. Lo importante es la conexión.</p>
+<p>Sesiones en Ciudad de México.</p>
+<a class="btn" href="#contact">Guarda tu Hora Azul</a>
+</div>
+
+</header>
+
+<section class="section center">
+<div class="wrap">
+<h2>Todo va demasiado rápido.</h2>
+<p>Los momentos importantes están ahí, pero no siempre los estás viviendo por completo.</p>
+
+<div class="visual">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603336/IMG_0217_gltpwk.jpg">
+</div>
+
+<a class="btn" href="#contact">Quiero vivir esto</a>
+</div>
 </section>
 
-<!-- PRÓXIMOS PASOS -->
-<section class="section pasos">
-  <div class="wrap">
-    <div class="pasos-grid">
-      <div class="pasos-text r">
-        <span class="eyebrow">Próximos pasos</span>
-        <h2 class="h2">Tengamos una<br><em>pequeña llamada</em></h2>
-        <p>No necesitas saber exactamente qué quieres — para eso estoy yo. Cuéntame un poco sobre tu familia o tu pareja y juntas descubrimos cuál es tu <strong>Hora Azul ideal</strong>.</p>
-        <p>El proceso es simple: una conversación breve, elegimos fecha y locación, y yo me encargo del resto — antes, durante y después de la sesión.</p>
-        <div style="margin-top:32px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;">
-          <a href="https://wa.me/521234567890?text=Hola!%20Me%20gustar%C3%ADa%20conocer%20mi%20Hora%20Azul%20ideal%20%F0%9F%8C%87" class="btn-wa" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Escríbeme por WhatsApp
-          </a>
-          <span style="font-size:11px;color:var(--muted);letter-spacing:.06em;">Sin compromiso · Respondo antes de 24 horas</span>
-        </div>
-      </div>
-      <div class="pasos-photo r d2">
-        <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602428/7_cttlpw.jpg" alt="Próximos pasos" loading="lazy">
-      </div>
-    </div>
-  </div>
+<section class="section soft center">
+<div class="wrap">
+<h2>Una pausa para conectar.</h2>
+<p>Un espacio guiado donde puedes estar presente de verdad.</p>
+
+<div class="visual">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602313/8_w4eqm7.jpg">
+</div>
+
+</div>
 </section>
 
-<!-- CTA FINAL -->
-<section class="section cta-final" id="cta">
-  <div class="wrap">
-    <span class="eyebrow r">¿Lista para tu pausa?</span>
-    <h2 class="h2 r">Guarda tu <em>Hora Azul</em></h2>
-    <p class="r">Los cupos son limitados para garantizar que cada sesión sea una experiencia única y profundamente personal. Escríbeme hoy y eligamos juntas la fecha perfecta.</p>
-    <div class="r">
-      <a href="https://wa.me/521234567890?text=Hola!%20Quiero%20agendar%20mi%20Hora%20Azul%20%F0%9F%8C%87" class="btn-wa" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Escríbeme por WhatsApp
-      </a>
-      <p class="cta-micro">Sin compromiso · Respondo antes de 24 horas · Cupos limitados por mes</p>
-    </div>
-  </div>
+<section class="section center">
+<div class="wrap">
+<h2>Tu Hora Azul.</h2>
+
+<div class="steps">
+<div class="step"><span>01</span><h3>Nos conocemos</h3><p>Llamada breve para prepararte.</p></div>
+<div class="step"><span>02</span><h3>Te acompaño</h3><p>Sesión guiada donde conectas.</p></div>
+<div class="step"><span>03</span><h3>Lo guardas</h3><p>Fotos que sí se quedan.</p></div>
+</div>
+
+<div class="visual">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602440/6_pxbus1.jpg">
+</div>
+
+<a class="btn" href="#contact">Agendar llamada</a>
+</div>
+</section>
+
+<section class="section center" id="portfolio">
+<div class="wrap">
+
+<h2>Momentos que sí se quedan.</h2>
+
+<div class="gallery">
+
+<!-- TODAS LAS FOTOS -->
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603953/1_expx4q.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603279/5f6d219a-f858-42bd-984a-14b6536a9920_2_ehfqni.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603336/IMG_0274-2_ayznzb.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777604144/IMG_0591-2_Large_qugyfc.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777604143/IMG_8167_Large_jdmtdl.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603335/IMG_9276_ngsghc.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603288/IMG_9745_gkopu6.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603292/IMG_9792_hbpyk8.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603290/IMG_0197-4_hutun2.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603287/IMG_9762_lixolb.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602612/IMG_8202_wzpusc.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602444/IMG_9689_dd6i65.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602441/2_m1qhr1.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602428/7_cttlpw.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602406/IMG_9673_tbmlvd.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602403/4_ns9x54.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602321/IMG_9596_dytats.jpg">
+<img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602228/IMG_9751_relfks.jpg">
+
+</div>
+</div>
+</section>
+
+<section class="section center" id="contact">
+<div class="wrap">
+<h2>Agenda tu Hora Azul</h2>
+
+<a class="btn-wa"
+href="https://wa.me/525551376253?text=Hola%20quiero%20agendar%20mi%20Hora%20Azul">
+Escríbeme por WhatsApp
+</a>
+
+</div>
 </section>
 
 <footer>
-  <div class="foot-inner">
-    <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/HA_LOGO_copy_risxon.png" alt="Hora Azul Fotografía" height="36">
-    <div class="foot-links">
-      <a href="https://instagram.com/horazulfotografia" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://tiktok.com/@horazulfotografia" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://facebook.com/horazulfotografia" target="_blank" rel="noopener">Facebook</a>
-    </div>
-    <p class="foot-legal">© 2025 Hora Azul Fotografía &nbsp;·&nbsp; <a href="#" style="color:inherit;">Aviso de privacidad</a> &nbsp;·&nbsp; Todos los derechos reservados</p>
-  </div>
+
+<img class="footer-logo" src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602198/HA_LOGO_copy_risxon.png">
+
+<p>Hora Azul Fotografía · Andrea Ríos · Ciudad de México</p>
+
 </footer>
 
-<div class="lb" id="lb">
-  <button class="lb-x" id="lbX">✕</button>
-  <button class="lb-p" id="lbP">‹</button>
-  <img class="lb-img" id="lbImg" src="" alt="">
-  <button class="lb-n" id="lbN">›</button>
-</div>
-
-<script>
-  const nav=document.getElementById('nav'),bar=document.getElementById('bar');
-  window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>bar.offsetHeight+6),{passive:true});
-  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.1});
-  document.querySelectorAll('.r').forEach(el=>obs.observe(el));
-  const IMGS=['https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603953/1_expx4q.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602313/8_w4eqm7.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602440/6_pxbus1.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603279/5f6d219a-f858-42bd-984a-14b6536a9920_2_ehfqni.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603336/IMG_0274-2_ayznzb.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777604144/IMG_0591-2_Large_qugyfc.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777604143/IMG_8167_Large_jdmtdl.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603335/IMG_9276_ngsghc.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603288/IMG_9745_gkopu6.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603292/IMG_9792_hbpyk8.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603290/IMG_0197-4_hutun2.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603287/IMG_9762_lixolb.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602612/IMG_8202_wzpusc.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602444/IMG_9689_dd6i65.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602441/2_m1qhr1.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602428/7_cttlpw.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602406/IMG_9673_tbmlvd.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602403/4_ns9x54.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602321/IMG_9596_dytats.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602228/IMG_9751_relfks.jpg','https://res.cloudinary.com/dlu6jpw54/image/upload/v1777603336/IMG_0217_gltpwk.jpg'];
-  let cur=0;
-  const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
-  const open=i=>{cur=i;lbImg.src=IMGS[i];lb.classList.add('open');document.body.style.overflow='hidden'};
-  const close=()=>{lb.classList.remove('open');document.body.style.overflow=''};
-  const go=d=>{cur=(cur+d+IMGS.length)%IMGS.length;lbImg.src=IMGS[cur]};
-  document.querySelectorAll('[data-lb]').forEach(el=>el.addEventListener('click',()=>open(+el.dataset.lb)));
-  document.getElementById('lbX').addEventListener('click',close);
-  document.getElementById('lbP').addEventListener('click',()=>go(-1));
-  document.getElementById('lbN').addEventListener('click',()=>go(1));
-  lb.addEventListener('click',e=>{if(e.target===lb)close()});
-  document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
-</script>
 </body>
 </html>

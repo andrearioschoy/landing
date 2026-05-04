@@ -89,8 +89,11 @@ font-size:13px;
 letter-spacing:.04em;
 }
 
-.btn{
-display:inline-block;
+.btn,
+.btn-wa{
+display:inline-flex;
+justify-content:center;
+align-items:center;
 margin-top:20px;
 padding:14px 24px;
 background:var(--navy);
@@ -99,6 +102,14 @@ text-decoration:none;
 font-size:12px;
 letter-spacing:.12em;
 text-transform:uppercase;
+border-radius:999px;
+}
+
+.btn-wa{
+padding:16px;
+margin:20px auto;
+max-width:360px;
+width:100%;
 }
 
 @media(min-width:900px){
@@ -194,32 +205,35 @@ margin-top:40px;
 .gallery{grid-template-columns:repeat(4,1fr)}
 }
 
-.about{
-display:grid;
-gap:20px;
-align-items:center;
-}
-
-.about img{
-max-width:180px;
-margin:auto;
-border-radius:999px;
-}
-
-.about-heading{
+.about-section{
 text-align:center;
 }
 
-.about-heading h2{
-font-size:clamp(30px,5vw,52px);
-color:var(--navy);
-margin-bottom:18px;
+.about-card{
+max-width:700px;
+margin:auto;
 }
 
-@media(min-width:800px){
-.about{
-grid-template-columns:220px 1fr;
+.about-title{
+font-size:clamp(30px,5vw,52px);
+color:var(--navy);
+margin-bottom:10px;
 }
+
+.about-name{
+font-size:clamp(30px,5vw,52px);
+color:var(--navy);
+margin:22px 0 14px;
+}
+
+.about-photo{
+max-width:180px;
+margin:0 auto;
+border-radius:999px;
+}
+
+.about-photo img{
+border-radius:999px;
 }
 
 .testimonials{
@@ -239,21 +253,6 @@ grid-template-columns:repeat(3,1fr);
 max-width:600px;
 margin:20px auto;
 text-align:left;
-}
-
-.btn-wa{
-display:flex;
-justify-content:center;
-align-items:center;
-padding:16px;
-background:var(--navy);
-color:white;
-text-decoration:none;
-margin:20px auto;
-max-width:360px;
-font-size:12px;
-letter-spacing:.12em;
-text-transform:uppercase;
 }
 
 footer{
@@ -373,20 +372,19 @@ margin:0 auto 10px;
 </div>
 </section>
 
-<section class="section about">
-<div class="wrap about">
+<section class="section about-section">
+<div class="wrap about-card">
+<h2 class="about-title">Sobre mí</h2>
 
-<div class="about-heading">
-<h2>Sobre mí</h2>
+<div class="about-photo">
 <img src="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602224/DSC07181-Editar_y1i63t.jpg" alt="Andrea Ríos">
-<h2>Andrea Ríos</h2>
 </div>
 
-<div>
+<h2 class="about-name">Andrea Ríos</h2>
+
 <p>Fotógrafa y cineasta mexicana con una pasión por encontrar y contar nuevas historias de forma auténtica, personal y creativa. Aficionada por los temas humanos y la conexión y la presencia como forma de vivir.</p>
-<a class="btn" href="#contact">Hablar conmigo</a>
-</div>
 
+<a class="btn" href="#contact">Hablar conmigo</a>
 </div>
 </section>
 

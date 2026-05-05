@@ -77,11 +77,12 @@
     .hero {
       display: grid;
       margin-top: 20px;
+      padding: 0 16px;
     }
     .hero-img {
       width: 100%;
       max-height: 60vh;
-      object-fit: cover; /* fix: was contain — caused whitespace on mobile */
+      object-fit: cover;
       border-radius: 16px;
     }
     .hero-copy {
@@ -157,10 +158,13 @@
         grid-template-columns: 1fr 1fr;
         align-items: center;
         margin-top: 30px;
+        padding: 0 32px;
+        gap: 0;
       }
       .hero-img {
         height: 85vh;
         object-fit: cover;
+        border-radius: 16px;
       }
       .hero-copy {
         text-align: left;
@@ -203,11 +207,13 @@
       display: grid;
       gap: var(--space-sm);
       margin-top: var(--space-md);
+      list-style: none;
     }
     .step {
       background: white;
       padding: var(--space-sm);
       border-radius: 14px;
+      list-style: none;
     }
     .step-num {
       font-size: 42px;
@@ -382,6 +388,27 @@
       font-size: 16px;
       letter-spacing: .04em;
     }
+    /* ── PACKAGE SELECT BUTTON ── */
+    .pkg-btn {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 12px 28px;
+      background: var(--navy);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background .3s, transform .2s;
+    }
+    .pkg-btn:hover {
+      background: #1e3f85;
+      transform: translateY(-2px);
+    }
+    ol.steps { list-style: none; padding: 0; }
+
     /* ── POPULAR BADGE ── */
     .price-card.popular {
       position: relative;
@@ -627,6 +654,7 @@
               </p>
             </div>
             <p class="investment">Inversión — $4,700</p>
+            <a class="pkg-btn" href="#contact" aria-label="Elegir paquete Instante">Guardar mi Hora Azul</a>
           </article>
 
           <article class="price-card popular reveal reveal-d2">
@@ -644,6 +672,7 @@
               </p>
             </div>
             <p class="investment">Inversión — $7,300</p>
+            <a class="pkg-btn" href="#contact" aria-label="Elegir paquete Conexión">Guardar mi Hora Azul</a>
           </article>
 
           <article class="price-card reveal reveal-d3">
@@ -661,6 +690,7 @@
               </p>
             </div>
             <p class="investment">Inversión — $12,000</p>
+            <a class="pkg-btn" href="#contact" aria-label="Elegir paquete Huella">Guardar mi Hora Azul</a>
           </article>
         </div>
 
@@ -707,6 +737,30 @@
       alt="Hora Azul Fotografía — logo">
     <p>Hora Azul Fotografía · Andrea Ríos · Ciudad de México</p>
   </footer>
+
+  <!-- ════════════════════════════
+       PACKAGE SELECTION SCRIPT
+  ════════════════════════════ -->
+  <script>
+    // When a package button is clicked, update the WA link with the package name
+    const waLinks = document.querySelectorAll('.btn-wa[href*="agendar"]');
+    const pkgBtns = document.querySelectorAll('.pkg-btn');
+    const baseMsg = 'Hola%2C%20quiero%20agendar%20mi%20Hora%20Azul';
+
+    pkgBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        // get package name from the card's h3
+        const cardName = this.closest('article').querySelector('h3').textContent.trim();
+        const msg = encodeURIComponent('Hola, me interesa el paquete ' + cardName + ' de Hora Azul 💙');
+        waLinks.forEach(link => {
+          link.href = 'https://wa.me/525551376253?text=' + msg;
+        });
+        // also update floating wa button
+        const waFloat = document.querySelector('.wa-float');
+        if (waFloat) waFloat.href = 'https://wa.me/525551376253?text=' + msg;
+      });
+    });
+  </script>
 
   <!-- ════════════════════════════
        SCROLL REVEAL SCRIPT

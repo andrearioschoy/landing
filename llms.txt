@@ -1,0 +1,9 @@
+# Hora Azul Fotografía
+
+> Fotógrafa de retrato de familias y parejas en Ciudad de México. Sesiones guiadas para reconectar y crear memorias que duran para siempre.
+
+## Páginas principales
+- [Inicio](https://horaazulfotografia.netlify.app/): sesiones de retrato de familias y parejas en CDMX, paquetes (Instante, Conexión, Huella) y precios, contacto por WhatsApp y agenda de llamada informativa.
+- [Blog](https://horaazulfotografia.netlify.app/blog/): artículos sobre fotografía de retrato familiar en CDMX — precios, preparación, mejores horarios.
+- [Recursos gratuitos](https://horaazulfotografia.netlify.app/recursos/): materiales gratis para familias y parejas que quieren prepararse para una sesión.
+- [Privacidad](https://horaazulfotografia.netlify.app/privacy.html): política de privacidad y uso de datos.

@@ -1,16 +1,17 @@
 // netlify/functions/cal-webhook.js
 //
-// Recibe el webhook de Cal.com cuando alguien agenda una llamada, y manda
-// el evento correspondiente a Meta por Conversions API (server-side, no
-// depende del navegador de la persona que agendó).
+// Recibe el webhook de Cal.com cuando alguien agenda, verifica que la
+// llamada venga realmente de Cal.com (firma HMAC), y manda el evento
+// correspondiente a Meta por Conversions API — server-side, no depende
+// del navegador de quien agendó.
 //
-// CONFIGURACIÓN EN CAL.COM (una sola vez):
-//   Cal.com -> Settings -> Developer -> Webhooks -> New Webhook
-//   Subscriber URL: https://TU-DOMINIO/.netlify/functions/cal-webhook
+// CONFIGURACIÓN EN CAL.COM (ya la hiciste):
+//   Subscriber URL: https://horaazulfotografia.netlify.app/.netlify/functions/cal-webhook
 //   Event trigger: Booking created
+//   Secret: el mismo valor que pusiste en CALCOM_WEBHOOK_SECRET
 //
-// Requiere las mismas variables de entorno que capi.js:
-//   META_PIXEL_ID, META_CAPI_TOKEN
+// Requiere estas variables de entorno en Netlify (ya las tienes):
+//   META_PIXEL_ID, META_ACCESS_TOKEN, CALCOM_WEBHOOK_SECRET
 
 const crypto = require('crypto');
 
@@ -18,15 +19,17 @@ function hashSHA256(value) {
   return crypto.createHash('sha256').update(value.trim().toLowerCase()).digest('hex');
 }
 
-// Slug del evento de la llamada gratuita de 15 min (el que ya tienes):
-// https://cal.com/hora-azul-fotografia/15min -> slug = "15min"
-const SLUG_LLAMADA_GRATIS = '15min';
-
-// AJUSTAR cuando crees en Cal.com un tipo de evento para agendar sesiones
-// PAGADAS directamente ahí (hoy no existe: cobras por transferencia/link
-// aparte). En cuanto lo crees, pon aquí su slug y el evento "Programar"
-// (Schedule) empieza a dispararse solo.
-const SLUG_SESION_PAGADA = 'sesion-hora-azul';
+// Mapa de tus 4 tipos de evento en Cal.com:
+//   30min                -> llamada informativa gratis      -> Lead ("Cliente potencial")
+//   horaazul-instante     -> sesión pagada, paquete Instante  -> Schedule ("Programar")
+//   horaazul-conexion     -> sesión pagada, paquete Conexión  -> Schedule ("Programar")
+//   horaazul-huella       -> sesión pagada, paquete Huella    -> Schedule ("Programar")
+const EVENTOS = {
+  '30min':             { eventName: 'Lead',     paquete: null },
+  'horaazul-instante':  { eventName: 'Schedule', paquete: 'Instante' },
+  'horaazul-conexion':  { eventName: 'Schedule', paquete: 'Conexión' },
+  'horaazul-huella':    { eventName: 'Schedule', paquete: 'Huella' }
+};
 
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
@@ -34,15 +37,43 @@ exports.handler = async function (event) {
   }
 
   const PIXEL_ID = process.env.META_PIXEL_ID;
-  const ACCESS_TOKEN = process.env.META_CAPI_TOKEN;
+  const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
+  const WEBHOOK_SECRET = process.env.CALCOM_WEBHOOK_SECRET;
 
-  if (!PIXEL_ID || !ACCESS_TOKEN) {
-    return { statusCode: 500, body: 'Faltan META_PIXEL_ID o META_CAPI_TOKEN' };
+  if (!PIXEL_ID || !ACCESS_TOKEN || !WEBHOOK_SECRET) {
+    return { statusCode: 500, body: 'Faltan META_PIXEL_ID, META_ACCESS_TOKEN o CALCOM_WEBHOOK_SECRET' };
+  }
+
+  // Cuerpo crudo tal cual llegó, necesario para verificar la firma byte a byte
+  const rawBody = event.isBase64Encoded
+    ? Buffer.from(event.body, 'base64').toString('utf8')
+    : event.body;
+
+  const signatureHeader =
+    event.headers['x-cal-signature-256'] || event.headers['X-Cal-Signature-256'];
+
+  if (!signatureHeader) {
+    return { statusCode: 401, body: 'Falta la firma del webhook' };
+  }
+
+  const expectedSignature = crypto
+    .createHmac('sha256', WEBHOOK_SECRET)
+    .update(rawBody, 'utf8')
+    .digest('hex');
+
+  const sigBuffer = Buffer.from(signatureHeader);
+  const expectedBuffer = Buffer.from(expectedSignature);
+  const firmaValida =
+    sigBuffer.length === expectedBuffer.length &&
+    crypto.timingSafeEqual(sigBuffer, expectedBuffer);
+
+  if (!firmaValida) {
+    return { statusCode: 401, body: 'Firma inválida — esta llamada no viene de Cal.com' };
   }
 
   let payload;
   try {
-    payload = JSON.parse(event.body);
+    payload = JSON.parse(rawBody);
   } catch (err) {
     return { statusCode: 400, body: 'JSON inválido' };
   }
@@ -53,35 +84,32 @@ exports.handler = async function (event) {
 
   const booking = payload.payload || {};
   const eventTypeSlug = (booking.eventType && booking.eventType.slug) || booking.type || '';
+  const config = EVENTOS[eventTypeSlug];
 
-  let eventName;
-  if (eventTypeSlug === SLUG_SESION_PAGADA) {
-    eventName = 'Schedule'; // "Programar"
-  } else if (eventTypeSlug === SLUG_LLAMADA_GRATIS) {
-    eventName = 'Lead'; // "Cliente potencial"
-  } else {
-    // Tipo de evento no reconocido: se registra igual como Lead, para no
-    // perder el dato, pero conviene revisar el slug en Cal.com.
-    eventName = 'Lead';
+  if (!config) {
+    // Tipo de evento no reconocido: no se manda nada a Meta, pero se
+    // responde 200 para que Cal.com no lo marque como fallido/reintente.
+    return { statusCode: 200, body: 'Tipo de evento sin mapear: ' + eventTypeSlug };
   }
 
   const attendee = (booking.attendees && booking.attendees[0]) || {};
-  const eventId = 'cal_' + (booking.uid || Date.now()) + '_' + eventName.toLowerCase();
+  const eventId = 'cal_' + (booking.uid || Date.now()) + '_' + config.eventName.toLowerCase();
 
   const userData = {};
   if (attendee.email) userData.em = [hashSHA256(attendee.email)];
 
+  const customData = { content_name: booking.title || eventTypeSlug };
+  if (config.paquete) customData.paquete = config.paquete;
+
   const body = {
     data: [
       {
-        event_name: eventName,
+        event_name: config.eventName,
         event_time: Math.floor(Date.now() / 1000),
         event_id: eventId,
         action_source: 'system_generated',
         user_data: userData,
-        custom_data: {
-          content_name: booking.title || eventTypeSlug
-        }
+        custom_data: customData
       }
     ]
   };

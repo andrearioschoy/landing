@@ -6,7 +6,7 @@
 //
 // Requiere estas variables de entorno en Netlify:
 //   META_PIXEL_ID    -> 1374011144230741
-//   META_CAPI_TOKEN  -> el token que genera Events Manager > Configuración > Conversions API
+//   META_ACCESS_TOKEN  -> el token que genera Events Manager > Configuración > Conversions API
 
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
@@ -14,12 +14,12 @@ exports.handler = async function (event) {
   }
 
   const PIXEL_ID = process.env.META_PIXEL_ID;
-  const ACCESS_TOKEN = process.env.META_CAPI_TOKEN;
+  const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 
   if (!PIXEL_ID || !ACCESS_TOKEN) {
     return {
       statusCode: 500,
-      body: 'Faltan META_PIXEL_ID o META_CAPI_TOKEN en las variables de entorno de Netlify.'
+      body: 'Faltan META_PIXEL_ID o META_ACCESS_TOKEN en las variables de entorno de Netlify.'
     };
   }
 

@@ -20,6 +20,10 @@ netlify/functions/capi.js         Reenvía eventos del navegador a Meta (Convers
 netlify/functions/cal-webhook.js  Recibe reservas de Cal.com (firma verificada) y manda Lead/Schedule a Meta
 blog/                      Índice + 3 artículos de prueba
 recursos/                  Página de recurso gratuito (pendiente tu contenido real)
+formulariocliente.html    Formulario PRIVADO de datos del cliente (no está en el sitemap,
+                           no tiene link desde ninguna página — solo entra quien tenga el link).
+                           Tú se lo compartes directo a cada clienta cuando ya agendó.
+gracias-cliente.html       Thank-you page después de llenar ese formulario — dispara "Cliente confirmado"
 
 
 VARIABLES DE ENTORNO EN NETLIFY (ya las tienes cargadas)
@@ -58,8 +62,8 @@ MAPA COMPLETO DE EVENTOS
 Tu nombre               | Evento técnico     | Tipo          | Se dispara en
 --------------------------|---------------------|---------------|------------------------------
 Page View                 | PageView            | Estándar      | Automático, todas las páginas
-Interesado en reunión     | InteresadoReunion    | Personalizado | Clic en "Agendar llamada" (lleva a /30min)
-Cliente potencial         | Lead                 | Estándar      | Server-side, al agendar el "30min" en Cal.com
+Interesado en reunión     | InteresadoReunion    | Personalizado | Sin disparador activo — el botón "Agendar llamada" ya no está en el sitio; el link /30min lo mandas tú directo por WhatsApp a quien ya pagó
+Cliente potencial         | Lead                 | Estándar      | Server-side, al agendar el "30min" en Cal.com (sin importar dónde compartiste el link)
 Contacto                  | Contact              | Estándar      | Cualquier clic a WhatsApp + carga de gracias-reunion.html
 Programar                 | Schedule             | Estándar      | Server-side, al agendar cualquiera de los 3 paquetes en Cal.com
 Inicio compra              | InitiateCheckout     | Estándar      | Clic en cualquier botón de paquete (baja a la sección de WhatsApp)
@@ -67,6 +71,21 @@ Compra                    | Purchase             | Estándar      | Carga de gra
 Vio portafolio             | VioPortafolio        | Personalizado | Clic en "Ver portafolio"
 Ver blog                  | VerBlog              | Personalizado | Carga de cualquier post
 Inició en blog             | IniciadoEnBlog       | Personalizado | Primer Contact/InteresadoReunion después de venir del blog
+Cliente confirmado         | CompleteRegistration | Estándar      | Envío del formulario privado (formulariocliente.html)
+
+FORMULARIO PRIVADO DE CLIENTES
+-----------------------
+formulariocliente.html usa Netlify Forms (sin backend propio). Después de
+subir estos archivos a GitHub y que Netlify despliegue, ve a tu panel de
+Netlify → tu sitio → pestaña "Forms" — ahí vas a ver cada envío (nombre,
+correo, teléfono, dirección) listo para exportar a CSV. No hace falta
+configurar nada extra: Netlify detecta el formulario solo por el atributo
+data-netlify="true" que ya trae el HTML.
+
+El link para compartir con tus clientas, una vez publicado, es:
+https://horaazulfotografia.netlify.app/formulariocliente (URL corta, ver netlify.toml)
+No está en ningún menú ni en el sitemap — solo lo encuentra quien tenga
+el link directo.
 
 Todos los eventos de clic van deduplicados: se disparan por Pixel del
 navegador Y por Conversions API con el mismo event_id, para que Meta los

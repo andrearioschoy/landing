@@ -129,6 +129,13 @@ if (document.body.hasAttribute('data-page-gracias-reunion')) {
   haTrack('Contact');
 }
 
+/* Cliente confirmado: automático al cargar la thank-you page del formulario
+   privado de datos (formulariocliente.html), después de que alguien ya
+   agendó su sesión y te mandó sus datos de contacto/envío. */
+if (document.body.hasAttribute('data-page-cliente-confirmado')) {
+  haTrack('CompleteRegistration');
+}
+
 /* Ver blog: automático al abrir cualquier post */
 if (document.body.hasAttribute('data-page-blog-post')) {
   haTrack('VerBlog', { content_name: document.title }, true);

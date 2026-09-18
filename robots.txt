@@ -1,16 +1,31 @@
 User-agent: *
 Allow: /
+Disallow: /formulariocliente.html
+Disallow: /formulariocliente
+Disallow: /gracias-cliente.html
 
 User-agent: GPTBot
 Allow: /
+Disallow: /formulariocliente.html
+Disallow: /formulariocliente
+Disallow: /gracias-cliente.html
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /formulariocliente.html
+Disallow: /formulariocliente
+Disallow: /gracias-cliente.html
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /formulariocliente.html
+Disallow: /formulariocliente
+Disallow: /gracias-cliente.html
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /formulariocliente.html
+Disallow: /formulariocliente
+Disallow: /gracias-cliente.html
 
 Sitemap: https://horaazulfotografia.netlify.app/sitemap.xml

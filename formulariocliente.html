@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datos de tu Hora Azul</title>
+<!-- No indexar ni listar: esta página no va en el sitemap ni en la navegación,
+     solo la abre quien tiene el link directo. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="https://res.cloudinary.com/dlu6jpw54/image/upload/v1777602207/mini-logo_aax5c9.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/global.css">
+<style>
+  .form-wrap { max-width: 480px; margin: 0 auto; text-align: left; }
+  .form-field { margin-bottom: 18px; }
+  .form-field label { display: block; font-size: 13px; color: var(--navy); margin-bottom: 6px; letter-spacing: .02em; }
+  .form-field input, .form-field textarea {
+    width: 100%; padding: 12px 14px; border: 1px solid rgba(40,84,172,.2);
+    border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--ink);
+  }
+  .form-field input:focus, .form-field textarea:focus { outline: 2px solid var(--sky); border-color: var(--navy); }
+  .form-submit { width: 100%; border: none; cursor: pointer; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <img class="logo" src="https://res.cloudinary.com/dlu6jpw54/image/upload/f_auto,q_auto,w_200/v1777602198/HA_LOGO_copy_risxon.png" alt="Hora Azul Fotografía — logo">
+</header>
+<main class="section">
+  <div class="wrap form-wrap">
+    <h1 class="center">Ya casi está listo</h1>
+    <p class="center">Solo necesito estos datos para dejar todo preparado antes de tu Hora Azul.</p>
+
+    <!--
+      Formulario nativo de Netlify: no requiere backend propio. Netlify lo
+      detecta al publicar (por el atributo data-netlify) y guarda cada envío
+      en Netlify → tu sitio → Forms, donde puedes verlos y exportarlos a CSV.
+    -->
+    <form name="cliente-hora-azul" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias-cliente.html">
+      <input type="hidden" name="form-name" value="cliente-hora-azul">
+      <p style="display:none">
+        <label>No llenar esto: <input name="bot-field"></label>
+      </p>
+
+      <div class="form-field">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+      <div class="form-field">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" required>
+      </div>
+      <div class="form-field">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required>
+      </div>
+      <div class="form-field">
+        <label for="direccion">Dirección (para envío de impresiones/álbum, si aplica)</label>
+        <textarea id="direccion" name="direccion" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn form-submit">Estoy listo para mi Hora Azul</button>
+    </form>
+  </div>
+</main>
+<footer>
+  <p>Hora Azul Fotografía · Andrea Ríos · Ciudad de México</p>
+</footer>
+<script src="/assets/tracking.js" defer></script>
+</body>
+</html>

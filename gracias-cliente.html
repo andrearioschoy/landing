@@ -11,7 +11,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/global.css">
 </head>
-<!-- data-page-cliente-confirmado: dispara CompleteRegistration al cargar (ver assets/tracking.js) -->
+<!--
+  data-page-cliente-confirmado: dispara Purchase al cargar (ver assets/tracking.js),
+  con el paquete y el monto que vienen en la URL desde formulariocliente.html
+  (por ejemplo /gracias-cliente.html?paquete=Conexi%C3%B3n&monto=7300).
+-->
 <body data-page-cliente-confirmado>
 <header class="site-header">
   <img class="logo" src="https://res.cloudinary.com/dlu6jpw54/image/upload/f_auto,q_auto,w_200/v1777602198/HA_LOGO_copy_risxon.png" alt="Hora Azul Fotografía — logo">

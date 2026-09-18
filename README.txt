@@ -23,7 +23,7 @@ recursos/                  Página de recurso gratuito (pendiente tu contenido r
 formulariocliente.html    Formulario PRIVADO de datos del cliente (no está en el sitemap,
                            no tiene link desde ninguna página — solo entra quien tenga el link).
                            Tú se lo compartes directo a cada clienta cuando ya agendó.
-gracias-cliente.html       Thank-you page después de llenar ese formulario — dispara "Cliente confirmado"
+gracias-cliente.html       Thank-you page después de llenar ese formulario — dispara "Compra" con el monto real
 
 
 VARIABLES DE ENTORNO EN NETLIFY (ya las tienes cargadas)
@@ -71,7 +71,7 @@ Compra                    | Purchase             | Estándar      | Carga de gra
 Vio portafolio             | VioPortafolio        | Personalizado | Clic en "Ver portafolio"
 Ver blog                  | VerBlog              | Personalizado | Carga de cualquier post
 Inició en blog             | IniciadoEnBlog       | Personalizado | Primer Contact/InteresadoReunion después de venir del blog
-Cliente confirmado         | CompleteRegistration | Estándar      | Envío del formulario privado (formulariocliente.html)
+Compra                     | Purchase             | Estándar      | Envío del formulario privado (formulariocliente.html), con el monto real del paquete elegido
 
 FORMULARIO PRIVADO DE CLIENTES
 -----------------------
@@ -86,6 +86,18 @@ El link para compartir con tus clientas, una vez publicado, es:
 https://horaazulfotografia.netlify.app/formulariocliente (URL corta, ver netlify.toml)
 No está en ningún menú ni en el sitemap — solo lo encuentra quien tenga
 el link directo.
+
+El formulario ahora incluye un campo "Paquete que reservó" (Instante /
+Conexión / Huella / Otro). Con eso, "Compra" se manda a Meta con el monto
+real de esa venta, no solo como un clic sin valor — eso ayuda mucho a que
+el algoritmo aprenda a buscar gente que sí compra, no solo gente que hace
+clic en cualquier cosa.
+
+NOTA: tienes DOS páginas que disparan "Compra" (gracias-pago.html y
+gracias-cliente.html) porque me confirmaste que uses una o la otra según
+el caso, nunca las dos para el mismo cliente — así que no hay riesgo de
+contar una misma venta dos veces. Si en algún momento empiezas a usar
+ambas para la misma persona, avísame para evitar que se duplique.
 
 Todos los eventos de clic van deduplicados: se disparan por Pixel del
 navegador Y por Conversions API con el mismo event_id, para que Meta los

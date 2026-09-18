@@ -133,7 +133,13 @@ if (document.body.hasAttribute('data-page-gracias-reunion')) {
    privado de datos (formulariocliente.html), después de que alguien ya
    agendó su sesión y te mandó sus datos de contacto/envío. */
 if (document.body.hasAttribute('data-page-cliente-confirmado')) {
-  haTrack('CompleteRegistration');
+  var paramsCliente = new URLSearchParams(window.location.search);
+  var montoCliente = paramsCliente.get('monto');
+  var paqueteCliente = paramsCliente.get('paquete') || '';
+  var dataCliente = { currency: 'MXN' };
+  if (montoCliente) dataCliente.value = Number(montoCliente);
+  if (paqueteCliente) dataCliente.content_name = paqueteCliente;
+  haTrack('Purchase', dataCliente);
 }
 
 /* Ver blog: automático al abrir cualquier post */

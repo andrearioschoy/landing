@@ -21,6 +21,11 @@
     border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--ink);
   }
   .form-field input:focus, .form-field textarea:focus { outline: 2px solid var(--sky); border-color: var(--navy); }
+  .form-field select {
+    width: 100%; padding: 12px 14px; border: 1px solid rgba(40,84,172,.2);
+    border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--ink);
+    background: white;
+  }
   .form-submit { width: 100%; border: none; cursor: pointer; }
 </style>
 </head>
@@ -60,6 +65,16 @@
         <label for="direccion">Dirección (para envío de impresiones/álbum, si aplica)</label>
         <textarea id="direccion" name="direccion" rows="3"></textarea>
       </div>
+      <div class="form-field">
+        <label for="paquete">Paquete que reservó</label>
+        <select id="paquete" name="paquete" required>
+          <option value="">Elige uno</option>
+          <option value="Instante" data-monto="4700">Instante — $4,700</option>
+          <option value="Conexión" data-monto="7300">Conexión — $7,300</option>
+          <option value="Huella" data-monto="12000">Huella — $12,000</option>
+          <option value="Otro" data-monto="">Otro / personalizado</option>
+        </select>
+      </div>
 
       <button type="submit" class="btn form-submit">Estoy listo para mi Hora Azul</button>
     </form>
@@ -68,6 +83,22 @@
 <footer>
   <p>Hora Azul Fotografía · Andrea Ríos · Ciudad de México</p>
 </footer>
+<script>
+  // Al enviar, se arma la URL de la thank-you page con el paquete y el
+  // monto elegidos, para que gracias-cliente.html pueda mandar el evento
+  // Purchase con el valor real de la venta (ver assets/tracking.js).
+  document.querySelector('form[name="cliente-hora-azul"]').addEventListener('submit', function () {
+    var select = document.getElementById('paquete');
+    var opcion = select.options[select.selectedIndex];
+    var paquete = encodeURIComponent(select.value || '');
+    var monto = opcion ? (opcion.getAttribute('data-monto') || '') : '';
+    var params = new URLSearchParams();
+    if (paquete) params.set('paquete', paquete);
+    if (monto) params.set('monto', monto);
+    var qs = params.toString();
+    this.action = '/gracias-cliente.html' + (qs ? '?' + qs : '');
+  });
+</script>
 <script src="/assets/tracking.js" defer></script>
 </body>
 </html>

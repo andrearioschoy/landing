@@ -43,7 +43,7 @@
       detecta al publicar (por el atributo data-netlify) y guarda cada envío
       en Netlify → tu sitio → Forms, donde puedes verlos y exportarlos a CSV.
     -->
-    <form name="cliente-hora-azul" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias-cliente.html">
+    <form name="cliente-hora-azul" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form-cliente">
       <input type="hidden" name="form-name" value="cliente-hora-azul">
       <p style="display:none">
         <label>No llenar esto: <input name="bot-field"></label>
@@ -84,19 +84,39 @@
   <p>Hora Azul Fotografía · Andrea Ríos · Ciudad de México</p>
 </footer>
 <script>
-  // Al enviar, se arma la URL de la thank-you page con el paquete y el
-  // monto elegidos, para que gracias-cliente.html pueda mandar el evento
-  // Purchase con el valor real de la venta (ver assets/tracking.js).
-  document.querySelector('form[name="cliente-hora-azul"]').addEventListener('submit', function () {
+  // Envío del formulario por AJAX (el método que Netlify documenta para
+  // controlar a dónde va la persona después de enviar). Se manda el
+  // formulario al endpoint de Netlify Forms, y YA CONFIRMADO que se guardó,
+  // se redirige a la thank-you page con el paquete y el monto elegidos.
+  var formCliente = document.getElementById('form-cliente');
+
+  function encodeFormData(form) {
+    return new URLSearchParams(new FormData(form)).toString();
+  }
+
+  function irAThankYou() {
     var select = document.getElementById('paquete');
     var opcion = select.options[select.selectedIndex];
-    var paquete = encodeURIComponent(select.value || '');
+    var paquete = select.value || '';
     var monto = opcion ? (opcion.getAttribute('data-monto') || '') : '';
     var params = new URLSearchParams();
     if (paquete) params.set('paquete', paquete);
     if (monto) params.set('monto', monto);
     var qs = params.toString();
-    this.action = '/gracias-cliente.html' + (qs ? '?' + qs : '');
+    window.location.href = '/gracias-cliente.html' + (qs ? '?' + qs : '');
+  }
+
+  formCliente.addEventListener('submit', function (e) {
+    e.preventDefault();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeFormData(formCliente)
+    })
+      .then(irAThankYou)
+      .catch(irAThankYou); // si falla la confirmación, igual se manda: el dato
+                            // probablemente sí llegó, y no queremos dejar a la
+                            // clienta atorada en el formulario.
   });
 </script>
 <script src="/assets/tracking.js" defer></script>

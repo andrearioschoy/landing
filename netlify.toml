@@ -2,6 +2,10 @@
   functions = "netlify/functions"
   publish = "."
 
+# Los datos de páginas viven en un .json dentro de lib/: se incluye siempre en las funciones.
+[functions]
+  included_files = ["netlify/functions/lib/**"]
+
 [[redirects]]
   from = "/blog/:slug"
   to = "/blog/:slug.html"
@@ -18,3 +22,19 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# ── Panel de administración (/admin) ──
+# Que no se indexe, no se guarde en caché y no mande el Referer a otros sitios.
+[[headers]]
+  for = "/admin"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+    Referrer-Policy = "same-origin"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+    Referrer-Policy = "same-origin"

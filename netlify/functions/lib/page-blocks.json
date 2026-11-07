@@ -1,0 +1,1013 @@
+{
+ "menu": [
+  {
+   "title": "Blog",
+   "items": [
+    {
+     "type": "posts",
+     "label": "Artículos"
+    }
+   ]
+  },
+  {
+   "title": "Páginas",
+   "items": [
+    {
+     "type": "page",
+     "key": "home",
+     "label": "Inicio"
+    },
+    {
+     "type": "page",
+     "key": "blogIndex",
+     "label": "Blog · portada del listado"
+    },
+    {
+     "type": "page",
+     "key": "recursos",
+     "label": "Recurso gratuito"
+    },
+    {
+     "type": "page",
+     "key": "privacidad",
+     "label": "Privacidad"
+    }
+   ]
+  },
+  {
+   "title": "Páginas de gracias",
+   "items": [
+    {
+     "type": "page",
+     "key": "graciasReunion",
+     "label": "Gracias · llamada agendada"
+    },
+    {
+     "type": "page",
+     "key": "graciasPago",
+     "label": "Gracias · pago"
+    },
+    {
+     "type": "page",
+     "key": "graciasCliente",
+     "label": "Gracias · formulario de clienta"
+    }
+   ]
+  },
+  {
+   "title": "Otras",
+   "items": [
+    {
+     "type": "page",
+     "key": "p404",
+     "label": "Página de error 404"
+    }
+   ]
+  }
+ ],
+ "blocks": [
+  {
+   "key": "home",
+   "label": "Inicio",
+   "path": "index.html",
+   "bind": "home",
+   "singleton": true,
+   "fixedRows": true,
+   "livePath": "/",
+   "fields": [
+    {
+     "key": "seoTitle",
+     "label": "Título de la pestaña y de Google",
+     "section": "Google y redes",
+     "hint": "Aparece en la pestaña del navegador y como título en Google. Ideal entre 30 y 60 caracteres."
+    },
+    {
+     "key": "seoDesc",
+     "label": "Descripción para Google",
+     "long": true,
+     "section": "Google y redes",
+     "hint": "El texto gris que aparece bajo el título en Google. Ideal entre 120 y 160 caracteres."
+    },
+    {
+     "key": "ogTitle",
+     "label": "Título al compartir el link (WhatsApp, Facebook, X)",
+     "section": "Google y redes"
+    },
+    {
+     "key": "ogDesc",
+     "label": "Descripción al compartir el link",
+     "long": true,
+     "section": "Google y redes"
+    },
+    {
+     "key": "ogImage",
+     "label": "Imagen al compartir el link",
+     "image": true,
+     "section": "Google y redes",
+     "hint": "URL de la imagen que aparece cuando alguien comparte tu página. Mejor 1200×630."
+    },
+    {
+     "key": "i1_src",
+     "label": "Logo del encabezado · imagen",
+     "image": true,
+     "section": "Encabezado"
+    },
+    {
+     "key": "i1_alt",
+     "label": "Logo del encabezado · texto alternativo",
+     "section": "Encabezado"
+    },
+    {
+     "key": "t01",
+     "label": "Frase bajo el logo",
+     "section": "Encabezado"
+    },
+    {
+     "key": "i2_src",
+     "label": "Hero · foto",
+     "image": true,
+     "section": "Hero principal"
+    },
+    {
+     "key": "i2_alt",
+     "label": "Hero · texto alternativo de la foto",
+     "section": "Hero principal"
+    },
+    {
+     "key": "t02",
+     "label": "Hero · frase destacada",
+     "section": "Hero principal"
+    },
+    {
+     "key": "t03",
+     "label": "Hero · título principal",
+     "section": "Hero principal"
+    },
+    {
+     "key": "t04",
+     "label": "Hero · bajada",
+     "section": "Hero principal"
+    },
+    {
+     "key": "t05",
+     "label": "Hero · ubicación",
+     "section": "Hero principal"
+    },
+    {
+     "key": "t06",
+     "label": "Hero · botón principal",
+     "section": "Hero principal"
+    },
+    {
+     "key": "t07",
+     "label": "Hero · botón secundario (portafolio)",
+     "section": "Hero principal"
+    },
+    {
+     "key": "t08",
+     "label": "El problema · título",
+     "section": "El problema"
+    },
+    {
+     "key": "t09",
+     "label": "El problema · texto",
+     "section": "El problema",
+     "long": true
+    },
+    {
+     "key": "i3_src",
+     "label": "El problema · foto",
+     "image": true,
+     "section": "El problema"
+    },
+    {
+     "key": "i3_alt",
+     "label": "El problema · texto alternativo",
+     "section": "El problema"
+    },
+    {
+     "key": "t10",
+     "label": "El problema · botón",
+     "section": "El problema"
+    },
+    {
+     "key": "t11",
+     "label": "Una pausa para conectar · título",
+     "section": "Una pausa para conectar"
+    },
+    {
+     "key": "t12",
+     "label": "Una pausa para conectar · texto",
+     "section": "Una pausa para conectar",
+     "long": true
+    },
+    {
+     "key": "i4_src",
+     "label": "Una pausa para conectar · foto",
+     "image": true,
+     "section": "Una pausa para conectar"
+    },
+    {
+     "key": "i4_alt",
+     "label": "Una pausa para conectar · texto alternativo",
+     "section": "Una pausa para conectar"
+    },
+    {
+     "key": "t13",
+     "label": "Proceso · título",
+     "section": "Tu Hora Azul — proceso"
+    },
+    {
+     "key": "t14",
+     "label": "Proceso · paso 1 · título",
+     "section": "Tu Hora Azul — proceso"
+    },
+    {
+     "key": "t15",
+     "label": "Proceso · paso 1 · texto",
+     "section": "Tu Hora Azul — proceso",
+     "long": true
+    },
+    {
+     "key": "t16",
+     "label": "Proceso · paso 2 · título",
+     "section": "Tu Hora Azul — proceso"
+    },
+    {
+     "key": "t17",
+     "label": "Proceso · paso 2 · texto",
+     "section": "Tu Hora Azul — proceso",
+     "long": true
+    },
+    {
+     "key": "t18",
+     "label": "Proceso · paso 3 · título",
+     "section": "Tu Hora Azul — proceso"
+    },
+    {
+     "key": "t19",
+     "label": "Proceso · paso 3 · texto",
+     "section": "Tu Hora Azul — proceso",
+     "long": true
+    },
+    {
+     "key": "i5_src",
+     "label": "Proceso · foto",
+     "image": true,
+     "section": "Tu Hora Azul — proceso"
+    },
+    {
+     "key": "i5_alt",
+     "label": "Proceso · texto alternativo",
+     "section": "Tu Hora Azul — proceso"
+    },
+    {
+     "key": "t20",
+     "label": "Portafolio · título",
+     "section": "Portafolio de fotografía"
+    },
+    {
+     "key": "t21",
+     "label": "Sobre mí · título pequeño",
+     "section": "Sobre Andrea Ríos"
+    },
+    {
+     "key": "i6_src",
+     "label": "Sobre mí · foto",
+     "image": true,
+     "section": "Sobre Andrea Ríos"
+    },
+    {
+     "key": "i6_alt",
+     "label": "Sobre mí · texto alternativo",
+     "section": "Sobre Andrea Ríos"
+    },
+    {
+     "key": "t22",
+     "label": "Sobre mí · nombre",
+     "section": "Sobre Andrea Ríos"
+    },
+    {
+     "key": "t23",
+     "label": "Sobre mí · texto",
+     "section": "Sobre Andrea Ríos",
+     "long": true
+    },
+    {
+     "key": "t24",
+     "label": "Sobre mí · botón",
+     "section": "Sobre Andrea Ríos"
+    },
+    {
+     "key": "t25",
+     "label": "Testimonios · título",
+     "section": "Testimonios de clientes"
+    },
+    {
+     "key": "t26",
+     "label": "Precios · título",
+     "section": "Precios y paquetes"
+    },
+    {
+     "key": "t27",
+     "label": "Precios · frase de apoyo",
+     "section": "Precios y paquetes"
+    },
+    {
+     "key": "t28",
+     "label": "Paquete 1 · nombre",
+     "section": "Precios y paquetes",
+     "hint": "El botón de este paquete avisa a Meta (Pixel) con su nombre original. Si lo cambias, el reporte seguirá viendo el nombre anterior."
+    },
+    {
+     "key": "t29",
+     "label": "Paquete 1 · descripción (un renglón por línea)",
+     "section": "Precios y paquetes",
+     "rich": true,
+     "lineBreaks": true,
+     "long": true
+    },
+    {
+     "key": "t30",
+     "label": "Paquete 1 · qué incluye (un renglón por línea)",
+     "section": "Precios y paquetes",
+     "rich": true,
+     "lineBreaks": true,
+     "long": true
+    },
+    {
+     "key": "t31",
+     "label": "Paquete 1 · precio",
+     "section": "Precios y paquetes",
+     "hint": "Cambia solo lo que se ve en la landing. El formulario de clientas (formulariocliente.html) y el Pixel guardan sus propios montos."
+    },
+    {
+     "key": "t32",
+     "label": "Paquete 1 · texto del botón",
+     "section": "Precios y paquetes"
+    },
+    {
+     "key": "t33",
+     "label": "Paquete 2 · etiqueta destacada",
+     "section": "Precios y paquetes"
+    },
+    {
+     "key": "t34",
+     "label": "Paquete 2 · nombre",
+     "section": "Precios y paquetes",
+     "hint": "El botón de este paquete avisa a Meta (Pixel) con su nombre original. Si lo cambias, el reporte seguirá viendo el nombre anterior."
+    },
+    {
+     "key": "t35",
+     "label": "Paquete 2 · descripción (un renglón por línea)",
+     "section": "Precios y paquetes",
+     "rich": true,
+     "lineBreaks": true,
+     "long": true
+    },
+    {
+     "key": "t36",
+     "label": "Paquete 2 · qué incluye (un renglón por línea)",
+     "section": "Precios y paquetes",
+     "rich": true,
+     "lineBreaks": true,
+     "long": true
+    },
+    {
+     "key": "t37",
+     "label": "Paquete 2 · precio",
+     "section": "Precios y paquetes",
+     "hint": "Cambia solo lo que se ve en la landing. El formulario de clientas (formulariocliente.html) y el Pixel guardan sus propios montos."
+    },
+    {
+     "key": "t38",
+     "label": "Paquete 2 · texto del botón",
+     "section": "Precios y paquetes"
+    },
+    {
+     "key": "t39",
+     "label": "Paquete 3 · nombre",
+     "section": "Precios y paquetes",
+     "hint": "El botón de este paquete avisa a Meta (Pixel) con su nombre original. Si lo cambias, el reporte seguirá viendo el nombre anterior."
+    },
+    {
+     "key": "t40",
+     "label": "Paquete 3 · descripción (un renglón por línea)",
+     "section": "Precios y paquetes",
+     "rich": true,
+     "lineBreaks": true,
+     "long": true
+    },
+    {
+     "key": "t41",
+     "label": "Paquete 3 · qué incluye (un renglón por línea)",
+     "section": "Precios y paquetes",
+     "rich": true,
+     "lineBreaks": true,
+     "long": true
+    },
+    {
+     "key": "t42",
+     "label": "Paquete 3 · precio",
+     "section": "Precios y paquetes",
+     "hint": "Cambia solo lo que se ve en la landing. El formulario de clientas (formulariocliente.html) y el Pixel guardan sus propios montos."
+    },
+    {
+     "key": "t43",
+     "label": "Paquete 3 · texto del botón",
+     "section": "Precios y paquetes"
+    },
+    {
+     "key": "t44",
+     "label": "Botón métodos de pago · texto",
+     "section": "Precios y paquetes"
+    },
+    {
+     "key": "h44",
+     "label": "Botón métodos de pago · enlace de WhatsApp",
+     "section": "Precios y paquetes",
+     "link": true,
+     "hint": "Debe seguir empezando con https://wa.me/ para que el Pixel cuente el clic como Contacto."
+    },
+    {
+     "key": "t45",
+     "label": "Contacto · título",
+     "section": "Contacto"
+    },
+    {
+     "key": "t46",
+     "label": "Contacto · texto",
+     "section": "Contacto"
+    },
+    {
+     "key": "t47",
+     "label": "Contacto · texto del botón",
+     "section": "Contacto"
+    },
+    {
+     "key": "h47",
+     "label": "Contacto · enlace de WhatsApp",
+     "section": "Contacto",
+     "link": true,
+     "hint": "Debe seguir empezando con https://wa.me/ para que el Pixel cuente el clic como Contacto. El link de \"agendar\" cambia solo cuando alguien elige un paquete."
+    },
+    {
+     "key": "i7_src",
+     "label": "Logo del pie de página · imagen",
+     "image": true,
+     "section": "Pie de página"
+    },
+    {
+     "key": "i7_alt",
+     "label": "Logo del pie de página · texto alternativo",
+     "section": "Pie de página"
+    },
+    {
+     "key": "t48",
+     "label": "Pie de página · línea de créditos",
+     "section": "Pie de página"
+    },
+    {
+     "key": "t49",
+     "label": "Pie de página · link \"Blog\"",
+     "section": "Pie de página"
+    },
+    {
+     "key": "h49",
+     "label": "Pie de página · dirección del link \"Blog\"",
+     "section": "Pie de página",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    },
+    {
+     "key": "t50",
+     "label": "Pie de página · link \"Privacidad\"",
+     "section": "Pie de página"
+    },
+    {
+     "key": "h50",
+     "label": "Pie de página · dirección del link \"Privacidad\"",
+     "section": "Pie de página",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    }
+   ],
+   "jsonld": {
+    "descriptionFrom": "seoDesc",
+    "imageFrom": "ogImage"
+   },
+   "lists": [
+    "gallery",
+    "testimonials"
+   ]
+  },
+  {
+   "key": "blogIndex",
+   "label": "Blog · portada del listado",
+   "path": "blog/index.html",
+   "bind": "blogIndex",
+   "singleton": true,
+   "fixedRows": true,
+   "livePath": "/blog/",
+   "fields": [
+    {
+     "key": "seoTitle",
+     "label": "Título de la pestaña y de Google",
+     "section": "Google y redes",
+     "hint": "Aparece en la pestaña del navegador y como título en Google. Ideal entre 30 y 60 caracteres."
+    },
+    {
+     "key": "seoDesc",
+     "label": "Descripción para Google",
+     "long": true,
+     "section": "Google y redes",
+     "hint": "El texto gris que aparece bajo el título en Google. Ideal entre 120 y 160 caracteres."
+    },
+    {
+     "key": "i1_src",
+     "label": "Imagen 1: Hora Azul Fotografía — logo",
+     "image": true,
+     "section": "Encabezado"
+    },
+    {
+     "key": "i1_alt",
+     "label": "Texto alternativo de la imagen 1",
+     "section": "Encabezado"
+    },
+    {
+     "key": "t01",
+     "label": "Título principal 1 · «Blog»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t02",
+     "label": "Párrafo 1 · «Ideas y respuestas reales para familias …»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t03",
+     "label": "Párrafo 2 · «Hora Azul Fotografía · Andrea Ríos · Ciu…»",
+     "section": "Pie de página"
+    },
+    {
+     "key": "t04",
+     "label": "Botón o enlace 1 · «Inicio»",
+     "section": "Pie de página"
+    },
+    {
+     "key": "h4",
+     "label": "Enlace de: Inicio",
+     "section": "Pie de página",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    }
+   ]
+  },
+  {
+   "key": "recursos",
+   "label": "Recurso gratuito",
+   "path": "recursos/index.html",
+   "bind": "recursos",
+   "singleton": true,
+   "fixedRows": true,
+   "livePath": "/recursos/",
+   "fields": [
+    {
+     "key": "seoTitle",
+     "label": "Título de la pestaña y de Google",
+     "section": "Google y redes",
+     "hint": "Aparece en la pestaña del navegador y como título en Google. Ideal entre 30 y 60 caracteres."
+    },
+    {
+     "key": "seoDesc",
+     "label": "Descripción para Google",
+     "long": true,
+     "section": "Google y redes",
+     "hint": "El texto gris que aparece bajo el título en Google. Ideal entre 120 y 160 caracteres."
+    },
+    {
+     "key": "i1_src",
+     "label": "Imagen 1: Hora Azul Fotografía — logo",
+     "image": true,
+     "section": "Encabezado"
+    },
+    {
+     "key": "i1_alt",
+     "label": "Texto alternativo de la imagen 1",
+     "section": "Encabezado"
+    },
+    {
+     "key": "t01",
+     "label": "Título principal 1 · «Recursos gratuitos»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t02",
+     "label": "Párrafo 1 · «Guías pensadas para las familias y parej…»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t03",
+     "label": "Subtítulo 1 · «Guía: cómo preparar a tu familia para un…»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t04",
+     "label": "Párrafo 2 · «Checklist de ropa, horarios y qué espera…»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t05",
+     "label": "Botón o enlace 1 · «Quiero la guía»",
+     "section": "Contenido"
+    },
+    {
+     "key": "h5",
+     "label": "Enlace de: Quiero la guía",
+     "section": "Contenido",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    },
+    {
+     "key": "t06",
+     "label": "Párrafo 3 · «Hora Azul Fotografía · Andrea Ríos · Ciu…»",
+     "section": "Pie de página"
+    },
+    {
+     "key": "t07",
+     "label": "Botón o enlace 2 · «Inicio»",
+     "section": "Pie de página"
+    },
+    {
+     "key": "h7",
+     "label": "Enlace de: Inicio",
+     "section": "Pie de página",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    },
+    {
+     "key": "t08",
+     "label": "Botón o enlace 3 · «Blog»",
+     "section": "Pie de página"
+    },
+    {
+     "key": "h8",
+     "label": "Enlace de: Blog",
+     "section": "Pie de página",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    }
+   ]
+  },
+  {
+   "key": "privacidad",
+   "label": "Privacidad",
+   "path": "privacy.html",
+   "bind": "privacidad",
+   "singleton": true,
+   "fixedRows": true,
+   "livePath": "/privacy.html",
+   "fields": [
+    {
+     "key": "seoTitle",
+     "label": "Título de la pestaña y de Google",
+     "section": "Google y redes",
+     "hint": "Aparece en la pestaña del navegador y como título en Google. Ideal entre 30 y 60 caracteres."
+    },
+    {
+     "key": "seoDesc",
+     "label": "Descripción para Google",
+     "long": true,
+     "section": "Google y redes",
+     "hint": "El texto gris que aparece bajo el título en Google. Ideal entre 120 y 160 caracteres."
+    },
+    {
+     "key": "i1_src",
+     "label": "Imagen 1: Hora Azul Fotografía — logo",
+     "image": true,
+     "section": "Encabezado"
+    },
+    {
+     "key": "i1_alt",
+     "label": "Texto alternativo de la imagen 1",
+     "section": "Encabezado"
+    },
+    {
+     "key": "t01",
+     "label": "Título principal 1 · «Privacidad»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t02",
+     "label": "Párrafo 1 · «Esta página explica qué datos recolecta …»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t03",
+     "label": "Título 1 · «Qué se recolecta»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t04",
+     "label": "Párrafo 2 · «Cuando navegas por este sitio, se regist…»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t05",
+     "label": "Título 2 · «Con quién se comparte»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t06",
+     "label": "Párrafo 3 · «Los datos de navegación se comparten con…»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t07",
+     "label": "Título 3 · «Tus opciones»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t08",
+     "label": "Párrafo 4 · «Puedes bloquear cookies de rastreo desde…»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t09",
+     "label": "Título 4 · «Contacto»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t10",
+     "label": "Párrafo 5 · «Para cualquier duda sobre esta política,…»",
+     "section": "Contenido",
+     "rich": true
+    },
+    {
+     "key": "t11",
+     "label": "Párrafo 6 · «Hora Azul Fotografía · Andrea Ríos · Ciu…»",
+     "section": "Pie de página"
+    },
+    {
+     "key": "t12",
+     "label": "Botón o enlace 1 · «Inicio»",
+     "section": "Pie de página"
+    },
+    {
+     "key": "h12",
+     "label": "Enlace de: Inicio",
+     "section": "Pie de página",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    },
+    {
+     "key": "t13",
+     "label": "Botón o enlace 2 · «Blog»",
+     "section": "Pie de página"
+    },
+    {
+     "key": "h13",
+     "label": "Enlace de: Blog",
+     "section": "Pie de página",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    }
+   ]
+  },
+  {
+   "key": "graciasReunion",
+   "label": "Gracias · llamada agendada",
+   "path": "gracias-reunion.html",
+   "bind": "graciasReunion",
+   "singleton": true,
+   "fixedRows": true,
+   "livePath": "/gracias-reunion.html",
+   "fields": [
+    {
+     "key": "seoTitle",
+     "label": "Título de la pestaña y de Google",
+     "section": "Google y redes",
+     "hint": "Aparece en la pestaña del navegador y como título en Google. Ideal entre 30 y 60 caracteres."
+    },
+    {
+     "key": "i1_src",
+     "label": "Imagen 1: Hora Azul Fotografía — logo",
+     "image": true,
+     "section": "Encabezado"
+    },
+    {
+     "key": "i1_alt",
+     "label": "Texto alternativo de la imagen 1",
+     "section": "Encabezado"
+    },
+    {
+     "key": "t01",
+     "label": "Título principal 1 · «¡Listo, quedó agendada!»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t02",
+     "label": "Párrafo 1 · «En unos minutos te llega la confirmación…»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t03",
+     "label": "Botón o enlace 1 · «Escríbeme por WhatsApp»",
+     "section": "Contenido"
+    },
+    {
+     "key": "h3",
+     "label": "Enlace de: Escríbeme por WhatsApp",
+     "section": "Contenido",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    },
+    {
+     "key": "t04",
+     "label": "Párrafo 2 · «Hora Azul Fotografía · Andrea Ríos · Ciu…»",
+     "section": "Pie de página"
+    }
+   ]
+  },
+  {
+   "key": "graciasPago",
+   "label": "Gracias · pago",
+   "path": "gracias-pago.html",
+   "bind": "graciasPago",
+   "singleton": true,
+   "fixedRows": true,
+   "livePath": "/gracias-pago.html",
+   "fields": [
+    {
+     "key": "seoTitle",
+     "label": "Título de la pestaña y de Google",
+     "section": "Google y redes",
+     "hint": "Aparece en la pestaña del navegador y como título en Google. Ideal entre 30 y 60 caracteres."
+    },
+    {
+     "key": "i1_src",
+     "label": "Imagen 1: Hora Azul Fotografía — logo",
+     "image": true,
+     "section": "Encabezado"
+    },
+    {
+     "key": "i1_alt",
+     "label": "Texto alternativo de la imagen 1",
+     "section": "Encabezado"
+    },
+    {
+     "key": "t01",
+     "label": "Título principal 1 · «¡Gracias! Tu Hora Azul está reservada»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t02",
+     "label": "Párrafo 1 · «Recibí tu pago. Te escribo por WhatsApp …»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t03",
+     "label": "Botón o enlace 1 · «Escríbeme por WhatsApp»",
+     "section": "Contenido"
+    },
+    {
+     "key": "h3",
+     "label": "Enlace de: Escríbeme por WhatsApp",
+     "section": "Contenido",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    },
+    {
+     "key": "t04",
+     "label": "Párrafo 2 · «Hora Azul Fotografía · Andrea Ríos · Ciu…»",
+     "section": "Pie de página"
+    }
+   ]
+  },
+  {
+   "key": "graciasCliente",
+   "label": "Gracias · formulario de clienta",
+   "path": "gracias-cliente.html",
+   "bind": "graciasCliente",
+   "singleton": true,
+   "fixedRows": true,
+   "livePath": "/gracias-cliente.html",
+   "fields": [
+    {
+     "key": "seoTitle",
+     "label": "Título de la pestaña y de Google",
+     "section": "Google y redes",
+     "hint": "Aparece en la pestaña del navegador y como título en Google. Ideal entre 30 y 60 caracteres."
+    },
+    {
+     "key": "i1_src",
+     "label": "Imagen 1: Hora Azul Fotografía — logo",
+     "image": true,
+     "section": "Encabezado"
+    },
+    {
+     "key": "i1_alt",
+     "label": "Texto alternativo de la imagen 1",
+     "section": "Encabezado"
+    },
+    {
+     "key": "t01",
+     "label": "Título principal 1 · «Conexión ahora, memoria después.»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t02",
+     "label": "Párrafo 1 · «Todo está listo para vivir tu Hora Azul.…»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t03",
+     "label": "Párrafo 2 · «Cualquier duda antes de la sesión, aquí …»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t04",
+     "label": "Botón o enlace 1 · «Escríbeme por WhatsApp»",
+     "section": "Contenido"
+    },
+    {
+     "key": "h4",
+     "label": "Enlace de: Escríbeme por WhatsApp",
+     "section": "Contenido",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    },
+    {
+     "key": "t05",
+     "label": "Párrafo 3 · «Hora Azul Fotografía · Andrea Ríos · Ciu…»",
+     "section": "Pie de página"
+    }
+   ]
+  },
+  {
+   "key": "p404",
+   "label": "Página de error 404",
+   "path": "404.html",
+   "bind": "p404",
+   "singleton": true,
+   "fixedRows": true,
+   "livePath": "/404.html",
+   "fields": [
+    {
+     "key": "seoTitle",
+     "label": "Título de la pestaña y de Google",
+     "section": "Google y redes",
+     "hint": "Aparece en la pestaña del navegador y como título en Google. Ideal entre 30 y 60 caracteres."
+    },
+    {
+     "key": "i1_src",
+     "label": "Imagen 1: Hora Azul Fotografía — logo",
+     "image": true,
+     "section": "Encabezado"
+    },
+    {
+     "key": "i1_alt",
+     "label": "Texto alternativo de la imagen 1",
+     "section": "Encabezado"
+    },
+    {
+     "key": "t01",
+     "label": "Título principal 1 · «Esta página no existe»",
+     "section": "Contenido"
+    },
+    {
+     "key": "t02",
+     "label": "Párrafo 1 · «El link que seguiste está roto o la pági…»",
+     "section": "Contenido",
+     "long": true
+    },
+    {
+     "key": "t03",
+     "label": "Botón o enlace 1 · «Volver al inicio»",
+     "section": "Contenido"
+    },
+    {
+     "key": "h3",
+     "label": "Enlace de: Volver al inicio",
+     "section": "Contenido",
+     "link": true,
+     "hint": "Dirección a la que lleva este botón."
+    },
+    {
+     "key": "t04",
+     "label": "Párrafo 2 · «Hora Azul Fotografía · Andrea Ríos · Ciu…»",
+     "section": "Pie de página"
+    }
+   ]
+  }
+ ]
+}

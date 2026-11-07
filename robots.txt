@@ -1,29 +1,34 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 Disallow: /formulariocliente.html
 Disallow: /formulariocliente
 Disallow: /gracias-cliente.html
 
 User-agent: GPTBot
 Allow: /
+Disallow: /admin/
 Disallow: /formulariocliente.html
 Disallow: /formulariocliente
 Disallow: /gracias-cliente.html
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /admin/
 Disallow: /formulariocliente.html
 Disallow: /formulariocliente
 Disallow: /gracias-cliente.html
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /admin/
 Disallow: /formulariocliente.html
 Disallow: /formulariocliente
 Disallow: /gracias-cliente.html
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /admin/
 Disallow: /formulariocliente.html
 Disallow: /formulariocliente
 Disallow: /gracias-cliente.html

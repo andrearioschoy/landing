@@ -40,10 +40,9 @@ exports.handler = async function (event) {
     event.headers['x-nf-client-connection-ip'] || event.headers['client-ip'] || '';
   const userAgent = event.headers['user-agent'] || '';
 
-  const userData = {
-    client_ip_address: clientIp,
-    client_user_agent: userAgent
-  };
+  const userData = {};
+  if (clientIp) userData.client_ip_address = clientIp;
+  if (userAgent) userData.client_user_agent = userAgent;
   if (fbp) userData.fbp = fbp;
   if (fbc) userData.fbc = fbc;
 
@@ -60,6 +59,9 @@ exports.handler = async function (event) {
       }
     ]
   };
+  // Opcional: pon META_TEST_EVENT_CODE en Netlify para ver los eventos en
+  // Events Manager > Probar eventos. Quítala antes de lanzar la campaña.
+  if (process.env.META_TEST_EVENT_CODE) body.test_event_code = process.env.META_TEST_EVENT_CODE;
 
   try {
     const res = await fetch(
@@ -71,7 +73,7 @@ exports.handler = async function (event) {
       }
     );
     const data = await res.json();
-    return { statusCode: 200, body: JSON.stringify(data) };
+    return { statusCode: res.ok ? 200 : 502, body: JSON.stringify(data) };
   } catch (err) {
     return { statusCode: 502, body: 'Error al mandar el evento a Meta: ' + err.message };
   }

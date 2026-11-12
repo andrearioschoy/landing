@@ -68,7 +68,9 @@ header.site-header { padding: 18px 20px 0; text-align: center; }
 }
 .btn:hover, .btn-wa:hover { background: #1e3f85; transform: translateY(-2px); }
 .btn-wa { padding: 16px; margin: 20px auto; max-width: 360px; width: 100%; }
-.btn-wa svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
+.btn-wa svg, .btn svg, .pkg-btn svg, .btn-secondary svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
+.btn-secondary svg { fill: var(--navy); width: 16px; height: 16px; }
+.btn-secondary, .pkg-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
 
 .btn-secondary {
   display: inline-block;

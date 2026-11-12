@@ -17,12 +17,12 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 
 var HA_PIXEL_ID = '1374011144230741';
-fbq('init', HA_PIXEL_ID);
 
 /* Evita que Meta invente eventos automáticos (incluido SubscribedButtonClick).
-   Sin esta línea el pixel escanea la página solo y puede mandar eventos
+   Debe ir ANTES de fbq('init'), si no Meta lo ignora. Sin esta línea el pixel escanea la página solo y puede mandar eventos
    estándar que nadie programó. Con esto, SOLO se disparan los de este archivo. */
 fbq('set', 'autoConfig', false, HA_PIXEL_ID);
+fbq('init', HA_PIXEL_ID);
 
 /* PageView en cada página que incluya este script */
 fbq('track', 'PageView');
@@ -53,6 +53,7 @@ function haTrack(eventName, customData, isCustom) {
 
   fetch('/.netlify/functions/capi', {
     method: 'POST',
+    keepalive: true,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       event_name: eventName,
@@ -77,7 +78,8 @@ function haTrack(eventName, customData, isCustom) {
 document.addEventListener('click', function (e) {
   var link = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
   if (link) {
-    haTrack('Contact');
+    var paqueteWa = link.getAttribute('data-paquete');
+    haTrack('Contact', paqueteWa ? { content_name: paqueteWa } : {});
     if (sessionStorage.getItem('ha_origen_blog') === '1') {
       haTrack('IniciadoEnBlog', {}, true);
     }
@@ -99,16 +101,6 @@ document.addEventListener('click', function (e) {
 document.addEventListener('click', function (e) {
   var link = e.target.closest('[data-track="ver-portafolio"]');
   if (link) haTrack('VioPortafolio', {}, true);
-});
-
-/* Inicio compra: clic en cualquier botón de paquete (Instante / Conexión / Huella).
-   Es la señal de que alguien quiere reservar un paquete específico. */
-document.addEventListener('click', function (e) {
-  var link = e.target.closest('[data-track="inicio-compra"]');
-  if (link) {
-    var paquete = link.getAttribute('data-paquete') || '';
-    haTrack('InitiateCheckout', paquete ? { content_name: paquete } : {});
-  }
 });
 
 /* Compra: automático al cargar la página de gracias del pago.
